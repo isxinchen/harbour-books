@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
 Item {
@@ -72,16 +72,17 @@ Item {
         opacity: titleVisible ? 1 : 0
     }
 
-    BusyIndicator {
+    CIndicator {
         anchors.centerIn: parent
-        size: BusyIndicatorSize.Large
+//        size: BusyIndicatorSize.Large
+        sizeMode: 0
         running: widget.loading
         opacity: running ? 1 : 0
         visible: opacity > 0
         Behavior on opacity {}
     }
 
-    Label {
+    CLabel {
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
@@ -93,7 +94,7 @@ Item {
         color: globalSettings.primaryPageToolColor
         opacity: pageNumberVisible ? 1 : 0
         visible: opacity > 0
-        Behavior on opacity { FadeAnimation {} }
+//        Behavior on opacity { FadeAnimation {} }
     }
 
     MouseArea {

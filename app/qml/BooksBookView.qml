@@ -30,10 +30,10 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
-SilicaFlickable {
+Flickable {
     id: root
 
     property variant book
@@ -62,13 +62,13 @@ SilicaFlickable {
         qsTrId("book-view-applying-smaller-fonts")
     ]
 
-    PullDownMenu {
-        MenuItem {
-            //% "Back to library"
-            text: qsTrId("book-view-back")
-            onClicked: root.closeBook()
-        }
-    }
+//    PullDownMenu {
+//        MenuItem {
+//            //% "Back to library"
+//            text: qsTrId("book-view-back")
+//            onClicked: root.closeBook()
+//        }
+//    }
 
     Timer {
         id: minLoadingDelay
@@ -115,7 +115,7 @@ SilicaFlickable {
         listView: bookView
     }
 
-    SilicaListView {
+    ListView {
         id: bookView
         model: bookModel
         anchors.fill: parent
@@ -158,7 +158,7 @@ SilicaFlickable {
             }
         }
 
-        Behavior on opacity { FadeAnimation {} }
+//        Behavior on opacity { FadeAnimation {} }
 
         BooksPageTools {
             id: pageTools
@@ -171,7 +171,7 @@ SilicaFlickable {
             rightMargin: bookModel.rightMargin
             opacity: _currentState.tools ? 1 : 0
             visible: opacity > 0 && book && bookModel.pageCount && !_loading
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
             onIncreaseFontSize: bookModel.increaseFontSize()
             onDecreaseFontSize: bookModel.decreaseFontSize()
         }
@@ -187,7 +187,7 @@ SilicaFlickable {
             opacity: (_currentState.pager && book && bookModel.pageCount) ? 0.75 : 0
             visible: opacity > 0
             onPageChanged: bookView.jumpTo(page)
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
     }
 
@@ -206,10 +206,11 @@ SilicaFlickable {
         opacity: _loading ? 0.6 : 0
     }
 
-    BusyIndicator {
+    CIndicator {
         id: busyIndicator
         anchors.centerIn: parent
-        size: BusyIndicatorSize.Large
+//        size: BusyIndicatorSize.Large
+        sizeMode: 0
         running: _loading
     }
 
@@ -219,7 +220,7 @@ SilicaFlickable {
         opacity: (_loading && bookModel.progress > 0) ? 1 : 0
     }
 
-    Button {
+    CButton {
         //% "Cancel"
         text: qsTrId("book-view-cancel-loading")
         height: Theme.itemSizeLarge
@@ -231,10 +232,10 @@ SilicaFlickable {
         enabled: _loading && bookModel.resetReason === BookModel.ReasonLoading
         visible: opacity > 0
         opacity: enabled ? 1.0 : 0.0
-        Behavior on opacity { FadeAnimation { } }
+//        Behavior on opacity { FadeAnimation { } }
     }
 
-    Label {
+    CLabel {
         anchors {
             top: busyIndicator.bottom
             topMargin: Theme.paddingLarge
@@ -245,7 +246,7 @@ SilicaFlickable {
         color: Theme.highlightColor
         opacity: _loading ? 1 : 0
         visible: opacity > 0
-        Behavior on opacity { FadeAnimation {} }
+//        Behavior on opacity { FadeAnimation {} }
         text: bookModel ? _loadingTextLabel[bookModel.resetReason] : ""
     }
 }

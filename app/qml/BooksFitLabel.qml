@@ -30,9 +30,9 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
-Label {
+CLabel {
     property int minFontSize: Theme.fontSizeTiny
     property int maxFontSize: Theme.fontSizeMedium
 
@@ -43,7 +43,7 @@ Label {
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter
 
-    Behavior on opacity { FadeAnimation {} }
+//    Behavior on opacity { FadeAnimation {} }
 
     Component.onCompleted: refitText()
 

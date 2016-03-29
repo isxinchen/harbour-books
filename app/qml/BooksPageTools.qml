@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
 Item {
@@ -71,7 +71,7 @@ Item {
             sourceSize.height: height
             opacity: globalSettings.invertColors ? 0.5 : 0
             visible: opacity > 0
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
 
         Image {
@@ -80,7 +80,7 @@ Item {
             sourceSize.height: height
             opacity: globalSettings.invertColors ? 0 : 0.25
             visible: opacity > 0
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
     }
 
@@ -105,7 +105,7 @@ Item {
             height: Math.ceil(parent.height/2)
             sourceSize.height: height
             opacity: globalSettings.invertColors ? 1 : 0.5
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
         onClicked: pageTools.increaseFontSize()
     }
@@ -129,7 +129,7 @@ Item {
             height: Math.ceil(parent.height/2)
             sourceSize.height: height
             opacity: globalSettings.invertColors ? 1 : 0.5
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
         onClicked: pageTools.decreaseFontSize()
     }

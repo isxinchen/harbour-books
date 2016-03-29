@@ -36,9 +36,9 @@
 
 #include <QString>
 
-#define BOOKS_APP_NAME          "harbour-books"
+#define BOOKS_APP_NAME          "com.syberos.fbreader"
 #define BOOKS_DCONF_ROOT        "/apps/" BOOKS_APP_NAME "/"
-#define BOOKS_DATA_ROOT         "usr/share/" BOOKS_APP_NAME
+#define BOOKS_DATA_ROOT         "/data/apps/" BOOKS_APP_NAME
 #define BOOKS_QML_DIR           BOOKS_DATA_ROOT "/qml"
 #define BOOKS_ICONS_DIR         BOOKS_DATA_ROOT "/icons"
 #define BOOKS_DATA_DIR          BOOKS_DATA_ROOT "/data"

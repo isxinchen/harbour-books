@@ -9,6 +9,7 @@ PKGCONFIG += glib-2.0
 FRIBIDI_DIR = $$_PRO_FILE_PWD_/../fribidi
 LINEBREAK_DIR = $$_PRO_FILE_PWD_/../linebreak
 FBREADER_DIR = fbreader
+BZIP2_DIR = $$_PRO_FILE_PWD_/../bzip2
 
 DEFINES += \
   FBREADER_THREAD_LOCAL_ZLFILE_PLAIN_STREAM_CACHE=1 \
@@ -193,7 +194,8 @@ TEXT_SRC = $$TEXT/src
 INCLUDEPATH += \
   $$TEXT/include \
   $$LINEBREAK_DIR/include \
-  $$FRIBIDI_DIR/include
+  $$FRIBIDI_DIR/include \
+  $$BZIP2_DIR/include
 
 SOURCES += \
   $$TEXT_SRC/style/ZLTextStyle.cpp \

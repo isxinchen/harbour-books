@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
 Loader {
     id: root
@@ -24,19 +24,19 @@ Loader {
                 onHintEnabledChanged: if (root.hintEnabled) showHint();
             }
             Component.onCompleted: if (root.hintEnabled) showHint();
-            InteractionHintLabel {
-                //% "Swipe left to see what's on the SD-card"
-                text: qsTrId("storage-view-swipe-left-hint")
-                anchors.bottom: parent.bottom
-                opacity: touchInteractionHint.running ? 1.0 : 0.0
-                Behavior on opacity { FadeAnimation { duration: 1000 } }
-            }
-            TouchInteractionHint {
-                id: touchInteractionHint
-                direction: TouchInteraction.Left
-                anchors.verticalCenter: parent.verticalCenter
-                onRunningChanged: hintRunning = running
-            }
+//            InteractionHintLabel {
+//                //% "Swipe left to see what's on the SD-card"
+//                text: qsTrId("storage-view-swipe-left-hint")
+//                anchors.bottom: parent.bottom
+//                opacity: touchInteractionHint.running ? 1.0 : 0.0
+//                Behavior on opacity { FadeAnimation { duration: 1000 } }
+//            }
+//            TouchInteractionHint {
+//                id: touchInteractionHint
+//                direction: TouchInteraction.Left
+//                anchors.verticalCenter: parent.verticalCenter
+//                onRunningChanged: hintRunning = running
+//            }
             Timer {
                 id: hintShownTimer
                 interval: 1000

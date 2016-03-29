@@ -33,7 +33,7 @@
 ****************************************************************************************/
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
 MouseArea {
     id: slider
@@ -180,7 +180,8 @@ MouseArea {
         }
     }
 
-    GlassItem {
+//    GlassItem {
+    Item {
         id: background
         // extra painting margins (Theme.paddingMedium on both sides) are needed,
         // because glass item doesn't visibly paint across the full width of the item
@@ -189,12 +190,12 @@ MouseArea {
         height: Theme.itemSizeExtraSmall/2
 
         anchors.verticalCenter: parent.verticalCenter
-        dimmed: true
-        radius: 0.06
-        falloffRadius: 0.09
-        ratio: 0.0
+//        dimmed: true
+//        radius: 0.06
+//        falloffRadius: 0.09
+//        ratio: 0.0
         onWidthChanged: { _tracking = true; _updateHighlightToValue() }
-        color: slider.highlighted ? highlightColor : secondaryColor
+//        color: slider.highlighted ? highlightColor : secondaryColor
         states: State {
             name: "hasText"; when: slider.valueText !== "" || text !== ""
             AnchorChanges { target: background; anchors.verticalCenter: undefined; anchors.bottom: slider.bottom }
@@ -202,7 +203,8 @@ MouseArea {
         }
     }
 
-    GlassItem {
+//    GlassItem {
+    Item {
         id: progressBar
         x: background.x // some margin at each end
         anchors.verticalCenter: background.verticalCenter
@@ -210,11 +212,11 @@ MouseArea {
         width: (sliderValue - minimumValue) / (maximumValue - minimumValue) * (background.width-height) + height
         height: Theme.itemSizeExtraSmall/2
         visible: sliderValue > minimumValue
-        dimmed: false
-        radius: 0.05
-        falloffRadius: 0.14
-        ratio: 0.0
-        color: slider.highlighted ? highlightColor : primaryColor
+//        dimmed: false
+//        radius: 0.05
+//        falloffRadius: 0.14
+//        ratio: 0.0
+//        color: slider.highlighted ? highlightColor : primaryColor
         Behavior on width {
             enabled: !_widthChanged
             SmoothedAnimation { velocity: 1500 }
@@ -237,22 +239,22 @@ MouseArea {
             }
         }
     }
-    GlassItem {
+    Item {
         id: highlight
         width: Theme.itemSizeMedium
         height: Theme.itemSizeMedium
-        radius: 0.17
-        falloffRadius: 0.17
+//        radius: 0.17
+//        falloffRadius: 0.17
         anchors.verticalCenter: background.verticalCenter
         visible: handleVisible
-        color: slider.highlighted ? highlightColor : primaryColor
+//        color: slider.highlighted ? highlightColor : primaryColor
         Behavior on x {
             enabled: !_widthChanged
             SmoothedAnimation { velocity: 1500 }
         }
     }
 
-    Label {
+    CLabel {
         id: labelText
         visible: text.length
         font.pixelSize: Theme.fontSizeSmall
@@ -261,7 +263,7 @@ MouseArea {
         anchors.top: background.verticalCenter
         anchors.topMargin: Theme.paddingMedium
         width: Math.min(paintedWidth, parent.width - 2*Theme.paddingMedium)
-        truncationMode: TruncationMode.Fade
+//        truncationMode: TruncationMode.Fade
     }
     states: State {
         name: "invalidRange"

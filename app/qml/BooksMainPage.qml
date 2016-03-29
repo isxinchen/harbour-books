@@ -30,13 +30,13 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
-Page {
+CPage {
     id: root
 
-    allowedOrientations: window.allowedOrientations
+//    allowedOrientations: window.allowedOrientations
 
     //property variant shelf
     property variant currentShelf: storageView.currentShelf
@@ -62,7 +62,7 @@ Page {
             visible: opacity > 0
             book: globalSettings.currentBook ? globalSettings.currentBook : null
             onCloseBook: globalSettings.currentBook = null
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
     }
 
@@ -71,7 +71,7 @@ Page {
         anchors.fill: parent
         opacity: globalSettings.currentBook ? 0 : 1
         visible: opacity > 0
-        Behavior on opacity { FadeAnimation {} }
+//        Behavior on opacity { FadeAnimation {} }
         onOpenBook: globalSettings.currentBook = book
     }
 

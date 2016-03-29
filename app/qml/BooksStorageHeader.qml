@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
 Column {
     id: root
@@ -83,7 +83,7 @@ Column {
             height: storageLabel.height*3/4
         }
 
-        Label {
+        CLabel {
             id: storageLabel
             anchors {
                 left: removableStorage ? icon.right : parent.left
@@ -112,10 +112,10 @@ Column {
             // count can be left there, it doesn't overlap with anything
             opacity: (needed) ? 1 : 0
             visible: opacity > 0
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
 
-        Label {
+        CLabel {
             id: bookCount
             anchors {
                 bottom: parent.bottom
@@ -128,7 +128,7 @@ Column {
             color: Theme.highlightColor
             opacity: (showCount && count > 0) ? 1 : 0
             visible: opacity > 0
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
         }
     }
 

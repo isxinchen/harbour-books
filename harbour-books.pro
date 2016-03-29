@@ -1,6 +1,14 @@
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS = fribidi linebreak fbreader harbour-lib app
+SUBDIRS = bzip2 fribidi linebreak fbreader harbour-lib app
+
+meta.files = META-INF
+meta.path = /data/apps/com.syberos.fbreader
+
+syber.files = sopconfig.xml
+syber.path = /data/apps/com.syberos.fbreader
+
+INSTALLS += meta syber
 
 OTHER_FILES += \
     README.md \

@@ -30,12 +30,12 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
-CoverBackground {
+Item {
     id: root
-    transparent: !_haveBook || grid.count < 6
+//    transparent: !_haveBook || grid.count < 6
 
     property variant book
     property variant shelf

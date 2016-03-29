@@ -48,7 +48,7 @@
 #include <QSocketNotifier>
 
 #include <unistd.h>
-#include <libudev.h>
+//#include <libudev.h>
 
 #define INTERNAL_STATE_DIR  "internal"
 #define REMOVABLE_STATE_DIR "removable"
@@ -114,12 +114,12 @@ bool BooksStorage::Private::equal(const BooksStorage::Private& aData) const
 
 bool BooksStorage::Private::isMountPoint(QString aPath)
 {
-    std::string path = aPath.toStdString();
-    std::string parent = path + "/..";
-    struct stat stPath, stParent;
-    return stat(path.c_str(), &stPath) == 0 &&
-        stat(parent.c_str(), &stParent) == 0 &&
-        stPath.st_dev != stParent.st_dev;
+//    std::string path = aPath.toStdString();
+//    std::string parent = path + "/..";
+//    struct stat stPath, stParent;
+//    return stat(path.c_str(), &stPath) == 0 &&
+//        stat(parent.c_str(), &stParent) == 0 &&
+//        stPath.st_dev != stParent.st_dev;
 }
 
 QString BooksStorage::Private::mountPoint(QString aPath)
@@ -265,8 +265,8 @@ public:
 
 public:
     QList<BooksStorage> iStorageList;
-    struct udev* iUdev;
-    struct udev_monitor* iMonitor;
+//    struct udev* iUdev;
+//    struct udev_monitor* iMonitor;
     int iDescriptor;
     QSocketNotifier* iNotifier;
     QTimer* iScanMountsTimer;
@@ -276,8 +276,8 @@ public:
 BooksStorageManager* BooksStorageManager::Private::gInstance = NULL;
 
 BooksStorageManager::Private::Private() :
-    iUdev(udev_new()),
-    iMonitor(NULL),
+//    iUdev(udev_new()),
+//    iMonitor(NULL),
     iDescriptor(-1),
     iNotifier(NULL),
     iScanMountsTimer(NULL)
@@ -319,19 +319,19 @@ BooksStorageManager::Private::Private() :
 
     iStorageList.insert(0, BooksStorage(homeDevice, homeBooks, true));
 
-    if (iUdev) {
-        iMonitor = udev_monitor_new_from_netlink(iUdev, "udev");
-        if (iMonitor) {
-            udev_monitor_filter_add_match_subsystem_devtype(iMonitor,
-                STORAGE_SUBSYSTEM, NULL);
-            udev_monitor_enable_receiving(iMonitor);
-            iDescriptor = udev_monitor_get_fd(iMonitor);
-            if (iDescriptor >= 0) {
-                iNotifier = new QSocketNotifier(iDescriptor,
-                    QSocketNotifier::Read);
-            }
-        }
-    }
+//    if (iUdev) {
+//        iMonitor = udev_monitor_new_from_netlink(iUdev, "udev");
+//        if (iMonitor) {
+//            udev_monitor_filter_add_match_subsystem_devtype(iMonitor,
+//                STORAGE_SUBSYSTEM, NULL);
+//            udev_monitor_enable_receiving(iMonitor);
+//            iDescriptor = udev_monitor_get_fd(iMonitor);
+//            if (iDescriptor >= 0) {
+//                iNotifier = new QSocketNotifier(iDescriptor,
+//                    QSocketNotifier::Read);
+//            }
+//        }
+//    }
 }
 
 int BooksStorageManager::Private::findDevice(QString aDevice) const
@@ -371,16 +371,16 @@ int BooksStorageManager::Private::findPath(QString aPath, QString* aRelPath) con
 
 BooksStorageManager::Private::~Private()
 {
-    if (iUdev) {
-        if (iMonitor) {
-            if (iDescriptor >= 0) {
-                delete iNotifier;
-                close(iDescriptor);
-            }
-            udev_monitor_unref(iMonitor);
-        }
-        udev_unref(iUdev);
-    }
+//    if (iUdev) {
+//        if (iMonitor) {
+//            if (iDescriptor >= 0) {
+//                delete iNotifier;
+//                close(iDescriptor);
+//            }
+//            udev_monitor_unref(iMonitor);
+//        }
+//        udev_unref(iUdev);
+//    }
 }
 
 // ==========================================================================
@@ -442,48 +442,48 @@ BooksStorage BooksStorageManager::storageForPath(QString aPath, QString* aRelPat
 
 void BooksStorageManager::onDeviceEvent(int)
 {
-    struct udev_device* dev = udev_monitor_receive_device(iPrivate->iMonitor);
-    if (dev) {
-        const char* devnode = udev_device_get_devnode(dev);
-        const char* action = udev_device_get_action(dev);
-        HDEBUG("got device");
-        HDEBUG("   node:" << devnode);
-        HDEBUG("   subsystem:" << udev_device_get_subsystem(dev));
-        HDEBUG("   devtype:" << udev_device_get_devtype(dev));
-        HDEBUG("   action:" << action);
-        if (devnode && action) {
-            if (!(strcmp(action, STORAGE_ACTION_ADD))) {
-                // Mount list isn't updated yet when we receive this
-                // notification. It takes hundreds of milliseconds until
-                // it gets mounted and becomes accessible.
-                if (!scanMounts()) {
-                    HDEBUG("no new mounts found");
-                    if (!iPrivate->iScanMountsTimer) {
-                        QTimer* timer = new QTimer(this);
-                        timer->setSingleShot(false);
-                        timer->setInterval(STORAGE_SCAN_INTERVAL);
-                        connect(timer, SIGNAL(timeout()), SLOT(onScanMounts()));
-                        iPrivate->iScanMountsTimer = timer;
-                    }
-                    iPrivate->iScanMountsTimer->start();
-                    iPrivate->iScanDeadline = QDateTime::currentDateTime().
-                        addMSecs(STORAGE_SCAN_TIMEOUT);
-                }
-            } else if (!(strcmp(action, STORAGE_ACTION_REMOVE))) {
-                int pos = iPrivate->findDevice(devnode);
-                if (pos >= 0) {
-                    HDEBUG("removable device is gone");
-                    BooksStorage storage = iPrivate->iStorageList.takeAt(pos);
-                    storage.iPrivate->iPresent = false;
-                    Q_EMIT storage.iPrivate->removed();
-                    Q_EMIT storageRemoved(storage);
-                }
-            }
-        }
-        udev_device_unref(dev);
-    } else {
-        HWARN("no device!");
-    }
+//    struct udev_device* dev = udev_monitor_receive_device(iPrivate->iMonitor);
+//    if (dev) {
+//        const char* devnode = udev_device_get_devnode(dev);
+//        const char* action = udev_device_get_action(dev);
+//        HDEBUG("got device");
+//        HDEBUG("   node:" << devnode);
+//        HDEBUG("   subsystem:" << udev_device_get_subsystem(dev));
+//        HDEBUG("   devtype:" << udev_device_get_devtype(dev));
+//        HDEBUG("   action:" << action);
+//        if (devnode && action) {
+//            if (!(strcmp(action, STORAGE_ACTION_ADD))) {
+//                // Mount list isn't updated yet when we receive this
+//                // notification. It takes hundreds of milliseconds until
+//                // it gets mounted and becomes accessible.
+//                if (!scanMounts()) {
+//                    HDEBUG("no new mounts found");
+//                    if (!iPrivate->iScanMountsTimer) {
+//                        QTimer* timer = new QTimer(this);
+//                        timer->setSingleShot(false);
+//                        timer->setInterval(STORAGE_SCAN_INTERVAL);
+//                        connect(timer, SIGNAL(timeout()), SLOT(onScanMounts()));
+//                        iPrivate->iScanMountsTimer = timer;
+//                    }
+//                    iPrivate->iScanMountsTimer->start();
+//                    iPrivate->iScanDeadline = QDateTime::currentDateTime().
+//                        addMSecs(STORAGE_SCAN_TIMEOUT);
+//                }
+//            } else if (!(strcmp(action, STORAGE_ACTION_REMOVE))) {
+//                int pos = iPrivate->findDevice(devnode);
+//                if (pos >= 0) {
+//                    HDEBUG("removable device is gone");
+//                    BooksStorage storage = iPrivate->iStorageList.takeAt(pos);
+//                    storage.iPrivate->iPresent = false;
+//                    Q_EMIT storage.iPrivate->removed();
+//                    Q_EMIT storageRemoved(storage);
+//                }
+//            }
+//        }
+//        udev_device_unref(dev);
+//    } else {
+//        HWARN("no device!");
+//    }
 }
 
 bool BooksStorageManager::scanMounts()

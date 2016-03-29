@@ -35,23 +35,24 @@
 #include "BooksDefs.h"
 #include "HarbourDebug.h"
 
-#include <MGConfItem>
+//#include <MGConfItem>
 
 #define DCONF_PATH                  BOOKS_DCONF_ROOT "hints/"
 #define KEY_STORAGE_LEFT_SWIPE      "storageLeftSwipt"
 #define DEFAULT_STORAGE_LEFT_SWIPE  0
 
 BooksHints::BooksHints(QObject* aParent) :
-    QObject(aParent),
-    iStorageLeftSwipe(new MGConfItem(DCONF_PATH KEY_STORAGE_LEFT_SWIPE, this))
+    QObject(aParent)
+//    ,iStorageLeftSwipe(new MGConfItem(DCONF_PATH KEY_STORAGE_LEFT_SWIPE, this))
 {
-    connect(iStorageLeftSwipe, SIGNAL(valueChanged()), SIGNAL(storageLeftSwipeChanged()));
+//    connect(iStorageLeftSwipe, SIGNAL(valueChanged()), SIGNAL(storageLeftSwipeChanged()));
 }
 
 int
 BooksHints::storageLeftSwipe() const
 {
-    return iStorageLeftSwipe->value(DEFAULT_STORAGE_LEFT_SWIPE).toInt();
+//    return iStorageLeftSwipe->value(DEFAULT_STORAGE_LEFT_SWIPE).toInt();
+    return 0;
 }
 
 void
@@ -59,5 +60,5 @@ BooksHints::setStorageLeftSwipe(
     int aValue)
 {
     HDEBUG(aValue);
-    iStorageLeftSwipe->set(aValue);
+//    iStorageLeftSwipe->set(aValue);
 }

@@ -30,13 +30,13 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
-Dialog {
+CDialog {
     id: root
-    allowedOrientations: window.allowedOrientations
-    canAccept: importModel.selectedCount > 0
+//    allowedOrientations: window.allowedOrientations
+//    canAccept: importModel.selectedCount > 0
 
     property alias selectedCount: importModel.selectedCount
     property alias destination: importModel.destination
@@ -49,20 +49,20 @@ Dialog {
         id: importModel
     }
 
-    SilicaFlickable {
+    Flickable {
         anchors.fill: parent
 
-        DialogHeader {
-            id: dialogHeader
-            spacing: 0
-            acceptText: ((_loading || !importModel.count) && !importModel.selectedCount) ? "" :
-                //% "Import %0 book(s)"
-                importModel.selectedCount ?  qsTrId("import-view-import-n-books",importModel.selectedCount).arg(importModel.selectedCount) :
-                //% "Select books"
-                qsTrId("import-view-select-books")
-        }
+//        DialogHeader {
+//            id: dialogHeader
+//            spacing: 0
+//            acceptText: ((_loading || !importModel.count) && !importModel.selectedCount) ? "" :
+//                //% "Import %0 book(s)"
+//                importModel.selectedCount ?  qsTrId("import-view-import-n-books",importModel.selectedCount).arg(importModel.selectedCount) :
+//                //% "Select books"
+//                qsTrId("import-view-select-books")
+//        }
 
-        SilicaListView {
+        ListView {
             anchors {
                 top: dialogHeader.bottom
                 bottom: parent.bottom
@@ -75,30 +75,31 @@ Dialog {
 
             opacity: (importModel.count > 0) ? 1 : 0
             visible: opacity > 0
-            Behavior on opacity { FadeAnimation {} }
+//            Behavior on opacity { FadeAnimation {} }
 
             delegate: BooksImportItem {
                 width: root.width
-                highlighted: down || model.selected
-                contentHeight: Theme.itemSizeExtraLarge
+//                highlighted: down || model.selected
+//                contentHeight: Theme.itemSizeExtraLarge
                 onClicked: importModel.setSelected(model.index, !model.selected)
                 book: model.book
             }
-            VerticalScrollDecorator {}
+//            VerticalScrollDecorator {}
         }
 
-        ViewPlaceholder {
-            //% "No new books found"
-            text: qsTrId("import-view-no-new-books-found")
-            enabled: !_loading && !importModel.count
-        }
+//        ViewPlaceholder {
+//            //% "No new books found"
+//            text: qsTrId("import-view-no-new-books-found")
+//            enabled: !_loading && !importModel.count
+//        }
     }
 
-    BusyIndicator {
+    CIndicator {
         id: busyIndicator
         visible: opacity > 0
         anchors.centerIn: parent
-        size: BusyIndicatorSize.Large
+//        size: BusyIndicatorSize.Large
+        sizeMode: 0
         running: _loading && !importModel.count
     }
 

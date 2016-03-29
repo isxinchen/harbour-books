@@ -52,7 +52,7 @@
 
 #include "ZLibrary.h"
 
-#include <sailfishapp.h>
+//#include <sailfishapp.h>
 
 #include <QGuiApplication>
 
@@ -68,7 +68,8 @@
 
 Q_DECL_EXPORT int main(int argc, char **argv)
 {
-    QGuiApplication* app = SailfishApp::application(argc, argv);
+//    QGuiApplication* app = SailfishApp::application(argc, argv);
+    QGuiApplication* app = new QGuiApplication(argc, argv);
     BOOKS_QML_REGISTER(BooksShelf, "Shelf");
     BOOKS_QML_REGISTER(BooksBook, "Book");
     BOOKS_QML_REGISTER(BooksBookModel, "BookModel");
@@ -84,17 +85,17 @@ Q_DECL_EXPORT int main(int argc, char **argv)
     HarbourLib::registerTypes(BOOKS_QML_PLUGIN,
         BOOKS_QML_PLUGIN_V1, BOOKS_QML_PLUGIN_V2);
 
-    QLocale locale;
-    QTranslator* translator = new QTranslator(app);
-    QString transDir = SailfishApp::pathTo("translations").toLocalFile();
-    QString transFile(BOOKS_APP_NAME);
-    if (translator->load(locale, transFile, "-", transDir) ||
-        translator->load(transFile, transDir)) {
-        app->installTranslator(translator);
-    } else {
-        HDEBUG("Failed to load translator for" << locale);
-        delete translator;
-    }
+//    QLocale locale;
+//    QTranslator* translator = new QTranslator(app);
+//    QString transDir = SailfishApp::pathTo("translations").toLocalFile();
+//    QString transFile(BOOKS_APP_NAME);
+//    if (translator->load(locale, transFile, "-", transDir) ||
+//        translator->load(transFile, transDir)) {
+//        app->installTranslator(translator);
+//    } else {
+//        HDEBUG("Failed to load translator for" << locale);
+//        delete translator;
+//    }
 
     BooksConfigManager configManager;
     if (ZLibrary::init(argc, argv)) {

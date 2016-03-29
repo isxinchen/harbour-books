@@ -48,7 +48,7 @@
 #include "image/ZLQtImageManager.h"
 #include "iconv/IConvEncodingConverter.h"
 
-#include <sailfishapp.h>
+//#include <sailfishapp.h>
 
 #include <QGuiApplication>
 #include <QStandardPaths>
@@ -168,7 +168,8 @@ void ZLibrary::run(ZLApplication* aApp)
     QString qml(QString::fromStdString(BaseDirectory + BOOKS_QML_FILE));
     HDEBUG("qml file" << qPrintable(qml));
 
-    QQuickView* view = SailfishApp::createView();
+//    QQuickView* view = SailfishApp::createView();
+    QQuickView* view = new QQuickView;
     QQmlContext* root = view->rootContext();
     QSize screenSize(view->screen()->size());
     booksPPI =

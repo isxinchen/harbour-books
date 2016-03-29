@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
 Item {
@@ -101,7 +101,7 @@ Item {
         borderWidth: book ? _borderWidth : 0
         borderColor: _borderColor
         opacity: (copyingIn || copyingOut) ? 0.1 : 1
-        Behavior on opacity { FadeAnimation { } }
+//        Behavior on opacity { FadeAnimation { } }
 
         BooksTitleText {
             id: title
@@ -151,17 +151,18 @@ Item {
     Loader {
         active: copying && !longCopyTimer.running && _haveProgress
         anchors.centerIn: busyIndicator
-        sourceComponent:  ProgressCircle {
-            value: copyProgress
-            width: busyIndicator.width
-            height: width
-            inAlternateCycle: true
-        }
+//        sourceComponent:  ProgressCircle {
+//            value: copyProgress
+//            width: busyIndicator.width
+//            height: width
+//            inAlternateCycle: true
+//        }
     }
 
-    BusyIndicator {
+    CIndicator {
         id: busyIndicator
-        size: BusyIndicatorSize.Medium
+//        size: BusyIndicatorSize.Medium
+        sizeMode: 0
         x: cover.x + cover.centerX - width/2
         y: cover.y + cover.centerY - height/2
         visible: opacity > 0
@@ -198,16 +199,16 @@ Item {
         }
     }
 
-    on_DeletingChanged: {
-        if (_deleting) {
-            scaleUpAnimation.stop()
-            scaleDownAnimation.stop()
-            deleteAnimation.start()
-        } else {
-            deleteAnimation.stop()
-            updateScaledDown()
-        }
-    }
+//    on_DeletingChanged: {
+//        if (_deleting) {
+//            scaleUpAnimation.stop()
+//            scaleDownAnimation.stop()
+//            deleteAnimation.start()
+//        } else {
+//            deleteAnimation.stop()
+//            updateScaledDown()
+//        }
+//    }
 
     onCopyingChanged: {
         if (copying) {

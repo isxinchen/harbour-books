@@ -30,10 +30,11 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
+import "Theme.js" as Theme
 
-BackgroundItem {
+Item {
     id: root
     width: parent.width
     height: contentHeight
@@ -42,6 +43,8 @@ BackgroundItem {
     property var book
     property string _title: book ? book.title : ""
     property string _authors: book ? book.authors : ""
+
+    signal clicked()
 
     BooksShelfItem {
         id: cover
@@ -66,18 +69,18 @@ BackgroundItem {
             rightMargin: Theme.horizontalPageMargin
             verticalCenter: parent.verticalCenter
         }
-        Label {
+        CLabel {
             width: parent.width
             text: _authors
-            color: root.highlighted ? Theme.highlightColor : Theme.primaryColor
-            truncationMode: TruncationMode.Fade
-            font.pixelSize: Theme.fontSizeExtraSmall
+//            color: root.highlighted ? Theme.highlightColor : Theme.primaryColor
+//            truncationMode: TruncationMode.Fade
+//            font.pixelSize: Theme.fontSizeExtraSmall
         }
-        Label {
+        CLabel {
             width: parent.width
             text: _title
-            color: root.highlighted ? Theme.highlightColor : Theme.primaryColor
-            truncationMode: TruncationMode.Fade
+//            color: root.highlighted ? Theme.highlightColor : Theme.primaryColor
+//            truncationMode: TruncationMode.Fade
         }
     }
 
@@ -92,11 +95,17 @@ BackgroundItem {
         source: "image://theme/icon-s-installed" + (highlighted ? "?" + Theme.highlightColor : "")
     }
 
-    BusyIndicator {
+    CIndicator {
         id: busyIndicator
         anchors.centerIn: parent
         visible: !root.enabled
         running: visible
-        size: BusyIndicatorSize.Medium
+//        size: BusyIndicatorSize.Medium
+        sizeMode: 0
+    }
+
+    MouseArea{
+        anchors.fill: parent
+        onClicked: clicked();
     }
 }

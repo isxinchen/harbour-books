@@ -1,7 +1,9 @@
-TARGET = harbour-books
+TARGET = fbreader
 CONFIG += sailfishapp link_pkgconfig
 PKGCONFIG += sailfishapp mlite5 glib-2.0
 #QT += dbus
+
+QT += qml quick
 
 !include(../common.pri)
 
@@ -14,24 +16,28 @@ FBREADER_DIR = $$_PRO_FILE_PWD_/../fbreader
 FRIBIDI_DIR = $$_PRO_FILE_PWD_/../fribidi
 LINEBREAK_DIR = $$_PRO_FILE_PWD_/../linebreak
 HARBOUR_LIB_DIR = $$_PRO_FILE_PWD_/../harbour-lib
+BZIP2_DIR = $$_PRO_FILE_PWD_/../bzip2
 
 # Libraries
 FBREADER_LIB = $$OUT_PWD/../fbreader/libfbreader.a
 FRIBIDI_LIB = $$OUT_PWD/../fribidi/libfribidi.a
 LINEBREAK_LIB = $$OUT_PWD/../linebreak/liblinebreak.a
 HARBOUR_LIB = $$OUT_PWD/../harbour-lib/libharbour-lib.a
+BZIP2_LIB = $$OUT_PWD/../bzip2/libbzip2.a
 
 PRE_TARGETDEPS += \
   $$FBREADER_LIB \
   $$FRIBIDI_LIB \
   $$LINEBREAK_LIB \
-  $$HARBOUR_LIB
+  $$HARBOUR_LIB \
+  $$BZIP2_LIB
 LIBS += \
   $$FBREADER_LIB \
   $$FRIBIDI_LIB \
   $$LINEBREAK_LIB \
   $$HARBOUR_LIB \
-  -lbz2 -lz -ldl
+  $$BZIP2_LIB \
+  -lz -ldl -lexpat
 
 OTHER_FILES += \
   icons/harbour-books.svg \
@@ -43,10 +49,22 @@ OTHER_FILES += \
   data/zlibrary/core/resources/* \
   translations/*.ts
 
-TARGET_DATA_DIR = /usr/share/harbour-books
+#TARGET_DATA_DIR = /usr/share/harbour-books
+#TARGET_DEFAULT_DATA_DIR = $$TARGET_DATA_DIR/data
+#TARGET_ZLIBRARY_DATA_DIR = $$TARGET_DEFAULT_DATA_DIR
+#TARGET_ICON_ROOT = /usr/share/icons/hicolor
+
+TARGET_DATA_DIR = /data/apps/com.syberos.fbreader
 TARGET_DEFAULT_DATA_DIR = $$TARGET_DATA_DIR/data
 TARGET_ZLIBRARY_DATA_DIR = $$TARGET_DEFAULT_DATA_DIR
-TARGET_ICON_ROOT = /usr/share/icons/hicolor
+TARGET_ICON_ROOT = $$TARGET_DATA_DIR/icons/hicolor
+
+qml_dir.files = qml
+qml_dir.path = $$TARGET_DATA_DIR/
+
+target.path = $$TARGET_DATA_DIR/bin
+
+INSTALLS += target qml_dir
 
 core_data.files = \
   data/zlibrary/core/*.gz \
@@ -133,10 +151,10 @@ SOURCES += \
   src/ZLibrary.cpp
 
 # Stubs for the libraries not allowed in harbour
-SOURCES += \
-  stubs/libexpat.c \
-  stubs/libmagic.c \
-  stubs/libudev.c
+#SOURCES += \
+#  stubs/libexpat.c
+#  stubs/libmagic.c \
+#  stubs/libudev.c
 
 HEADERS += \
   src/BooksBook.h \

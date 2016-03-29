@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
 MouseArea {
     id: root
@@ -77,9 +77,9 @@ MouseArea {
                 }
             }
 
-            Label {
+            CLabel {
                 id: label
-                truncationMode: TruncationMode.Fade
+//                truncationMode: TruncationMode.Fade
                 anchors {
                     left: icon.right
                     leftMargin: Theme.paddingMedium
@@ -93,11 +93,11 @@ MouseArea {
                 color: (currentFolder || pressed) ? Theme.highlightColor : Theme.primaryColor
                 visible: opacity > 0
                 opacity: editable ? 0 : 1
-                Behavior on opacity { FadeAnimation {} }
+//                Behavior on opacity { FadeAnimation {} }
                 Behavior on color { ColorAnimation { duration: 100 } }
             }
 
-            TextField {
+            CTextField {
                 id: editor
                 width: parent.width - icon.width - 2*Theme.paddingMedium
                 y: 0
@@ -107,21 +107,21 @@ MouseArea {
                 }
                 textLeftMargin: 0
                 textRightMargin: 0
-                textTopMargin: 0
+//                textTopMargin: 0
                 visible: opacity > 0
                 opacity: editable ? 1 : 0
-                Behavior on opacity { FadeAnimation {} }
+//                Behavior on opacity { FadeAnimation {} }
                 //% "Enter folder name"
                 placeholderText: qsTrId("shelf-title-placeholder")
-                EnterKey.enabled: text.length > 0 && text !== "." && text !== ".." && text.indexOf("/") < 0
-                EnterKey.onClicked: {
-                    if (editable) {
-                        if (text) {
-                            root.rename(text)
-                        }
-                        parent.focus = true
-                    }
-                }
+//                EnterKey.enabled: text.length > 0 && text !== "." && text !== ".." && text.indexOf("/") < 0
+//                EnterKey.onClicked: {
+//                    if (editable) {
+//                        if (text) {
+//                            root.rename(text)
+//                        }
+//                        parent.focus = true
+//                    }
+//                }
             }
         }
 

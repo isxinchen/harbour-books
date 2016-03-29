@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
 Item {
@@ -62,7 +62,7 @@ Item {
     property bool _loading: !shelfModel || shelfModel.loading || startAnimationTimer.running
     property var _remorse
 
-    on_HaveBooksChanged: if (!_haveBooks) shelfView.stopEditing()
+//    on_HaveBooksChanged: if (!_haveBooks) shelfView.stopEditing()
 
     Shelf {
         id: shelfModel
@@ -99,28 +99,29 @@ Item {
     }
 
     onDeleteAllRequestChanged: {
-        if (deleteAllRequest) {
-            if (!_remorse) _remorse = remorseComponent.createObject(shelfView)
-            fadeAnimation.restart()
-            //% "Deleting all books"
-            _remorse.execute(qsTrId("shelf-view-about-to-delete-all"),
-                doDeleteAll, _remorseTimeout)
-        } else if (_remorse) {
-            fadeAnimation.stop()
-            _remorse.cancel()
-        }
+        console.log("BooksShelfView:onDeleteAllRequestChanged")
+//        if (deleteAllRequest) {
+//            if (!_remorse) _remorse = remorseComponent.createObject(shelfView)
+//            fadeAnimation.restart()
+//            //% "Deleting all books"
+//            _remorse.execute(qsTrId("shelf-view-about-to-delete-all"),
+//                doDeleteAll, _remorseTimeout)
+//        } else if (_remorse) {
+//            fadeAnimation.stop()
+//            _remorse.cancel()
+//        }
     }
 
-    Component {
-        id: remorseComponent
-        RemorsePopup {
-            onCanceled: {
-                shelfView.cancelDeleteAll()
-                shelf.cancelAllDeleteRequests()
-                fadeAnimation.stop()
-            }
-        }
-    }
+//    Component {
+//        id: remorseComponent
+//        RemorsePopup {
+//            onCanceled: {
+//                shelfView.cancelDeleteAll()
+//                shelf.cancelAllDeleteRequests()
+//                fadeAnimation.stop()
+//            }
+//        }
+//    }
 
     Connections {
         target: dragItem
@@ -155,7 +156,7 @@ Item {
         to: grid.minContentY
     }
 
-    SilicaGridView {
+    GridView {
         id: grid
         anchors {
             top: storageHeader.bottom
@@ -258,7 +259,7 @@ Item {
         onActiveFocusChanged: console.log("BooksShelfView.grid", activeFocus)
 
         Behavior on y { SpringAnimation {} }
-        VerticalScrollDecorator {}
+//        VerticalScrollDecorator {}
     }
 
     BooksDragArea {

@@ -30,10 +30,10 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
-SilicaFlickable {
+Flickable {
     id: storageView
     interactive: !dragInProgress
 
@@ -88,21 +88,21 @@ SilicaFlickable {
         }
     }
 
-    PullDownMenu {
-        MenuItem {
-            //% "Scan downloads"
-            text: qsTrId("storage-view-scan-downloads")
-            visible: !editMode
-            onClicked: pageStack.push(importComponent)
-        }
-        MenuItem {
-            //% "Delete all books"
-            text: qsTrId("storage-view-delete-everything")
-            visible: editMode
-            enabled: currentShelf && (currentShelf.count > 0)
-            onClicked: storageModel.setDeleteAllRequest(storageListWatcher.currentIndex, true)
-        }
-    }
+//    PullDownMenu {
+//        MenuItem {
+//            //% "Scan downloads"
+//            text: qsTrId("storage-view-scan-downloads")
+//            visible: !editMode
+//            onClicked: pageStack.push(importComponent)
+//        }
+//        MenuItem {
+//            //% "Delete all books"
+//            text: qsTrId("storage-view-delete-everything")
+//            visible: editMode
+//            enabled: currentShelf && (currentShelf.count > 0)
+//            onClicked: storageModel.setDeleteAllRequest(storageListWatcher.currentIndex, true)
+//        }
+//    }
 
     onEditModeChanged: {
         storageModel.cancelDeleteAllRequests()
@@ -141,7 +141,7 @@ SilicaFlickable {
         onSizeChanged: _cellWidth = calculateCellWidth()
     }
 
-    SilicaListView {
+    ListView {
         id: storageList
         anchors.fill: parent
         model: storageModel

@@ -30,12 +30,12 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 import harbour.books 1.0
 
-ApplicationWindow {
+CPageStackWindow {
     id: window
-    allowedOrientations: Orientation.All
+//    allowedOrientations: Orientation.All
 
     //% "Books"
     readonly property string title: qsTrId("books-app-name")
@@ -48,10 +48,10 @@ ApplicationWindow {
 
     initialPage: BooksMainPage { id: mainPage }
 
-    cover: Component {
-        BooksCoverPage {
-            book: globalSettings.currentBook
-            shelf: currentShelf
-        }
-    }
+//    cover: Component {
+//        BooksCoverPage {
+//            book: globalSettings.currentBook
+//            shelf: currentShelf
+//        }
+//    }
 }

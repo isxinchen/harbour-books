@@ -21,7 +21,7 @@
 #define __ZLUNIXFSMANAGER_H__
 
 #include "../../filesystem/ZLFSManager.h"
-#include <magic.h>
+//#include <magic.h>
 
 class ZLUnixFSManager : public ZLFSManager {
 
@@ -50,7 +50,7 @@ private:
 	bool canRemoveFile(const std::string &path) const;
 
 private:
-	magic_t myMagic;
+//	magic_t myMagic;
 };
 
 #endif /* __ZLUNIXFSMANAGER_H__ */

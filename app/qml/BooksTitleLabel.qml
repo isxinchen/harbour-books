@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
 Item {
     id: title
@@ -39,7 +39,7 @@ Item {
     property alias color: label.color
 
     visible: opacity > 0
-    Behavior on opacity { FadeAnimation {} }
+//    Behavior on opacity { FadeAnimation {} }
 
     Component.onCompleted: updateLayout()
 
@@ -67,7 +67,7 @@ Item {
         }
     }
 
-    Label {
+    CLabel {
         id: label
         anchors.fill: parent
         smooth: true
@@ -75,7 +75,7 @@ Item {
         font.pixelSize: Theme.fontSizeSmall
         horizontalAlignment: contentWidth > Math.ceil(width) ? Text.AlignLeft : Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        truncationMode: TruncationMode.Fade
+//        truncationMode: TruncationMode.Fade
         maximumLineCount: 1
     }
 }

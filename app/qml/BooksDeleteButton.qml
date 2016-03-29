@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
 Rectangle {
     id: root
@@ -47,7 +47,7 @@ Rectangle {
 
     opacity: enabled ? 1 : 0
     visible: opacity > 0
-    Behavior on opacity { FadeAnimation {} }
+//    Behavior on opacity { FadeAnimation {} }
 
     Image {
         anchors.fill: parent

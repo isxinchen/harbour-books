@@ -30,7 +30,7 @@
 */
 
 import QtQuick 2.0
-import Sailfish.Silica 1.0
+import com.syberos.basewidgets 2.0
 
 Item {
 
@@ -42,7 +42,7 @@ Item {
 
     implicitHeight: Math.max(noBooks.visible ? noBooks.implicitHeight : 0, busy.visible ? busy.implicitHeight : 0) * 2
 
-    InfoLabel {
+    CLabel {
         id: noBooks
 
         //% "No books"
@@ -51,11 +51,12 @@ Item {
         anchors.centerIn: parent
     }
 
-    BusyIndicator {
+    CIndicator {
         id: busy
         visible: opacity > 0
         anchors.centerIn: parent
-        size: BusyIndicatorSize.Large
+//        size: BusyIndicatorSize.Large
+        sizeMode: 0
         running: footerState == 1 && allowBusyIndicator
         Behavior on opacity { enabled: false }
     }
