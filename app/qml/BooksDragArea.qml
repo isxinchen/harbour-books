@@ -31,6 +31,7 @@
 
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
+import "Theme.js" as Theme
 
 MouseArea {
     id: root
@@ -68,8 +69,10 @@ MouseArea {
         stopDrag()
     }
     onClicked: {
+        console.log("BooksDragArea onClicked")
         var index
         if (shelfView.editMode) {
+            console.log("BooksDragArea onClicked editMode true")
             if (!dragInProgress || !dragPositionChanged) {
                 index = gridView.indexAt(mouseX + gridView.contentX, mouseY + currentShelfView.contentY)
                 if (index >= 0 &&
@@ -85,14 +88,25 @@ MouseArea {
                 }
             }
         } else {
-            index = gridView.indexAt(mouseX + gridView.contentX, mouseY + currentShelfView.contentY)
+            var x = mouseX + gridView.contentX
+            var y = mouseY + currentShelfView.contentY
+            index = gridView.indexAt(x, y)
+            console.log("BooksDragArea onClicked editMode false",
+                        "index", index,
+                        "x", x,
+                        "y", y,
+                        "lastReleasedItemIndex", lastReleasedItemIndex)
             if (index >= 0) {
                 if (index === lastReleasedItemIndex) {
+                    console.log("BooksDragArea index === lastReleasedItemIndex")
                     var item = shelf.get(index);
                     if (item.accessible) {
+                        console.log("BooksDragArea item.accessible")
                         if (item.book) {
+                            console.log("BooksDragArea item.book", item.book)
                             shelfView.openBook(item.book)
                         } else if (item.shelf) {
+                            console.log("BooksDragArea item.shelf", item.shelf)
                             var path = shelfView.shelf.relativePath
                             shelfView.shelf.relativePath  = path ? (path + "/" + item.shelf.name) : item.shelf.name
                         }
@@ -107,6 +121,7 @@ MouseArea {
         dragScrollAnimation.stop()
     }
     onPressed: {
+        console.log("BooksDragArea onPressed")
         var index = gridView.indexAt(mouseX + gridView.contentX, mouseY + currentShelfView.contentY)
         lastReleasedItemIndex = -1
         lastReleasedDeleteItemIndex = -1
@@ -131,6 +146,7 @@ MouseArea {
         }
     }
     onReleased: {
+        console.log("BooksDragArea onReleased")
         stopDrag(mouseX, mouseY)
         if (mouseY + gridView.contentY < 0) {
             // Let the header item handle it
@@ -138,11 +154,13 @@ MouseArea {
         }
     }
     onPressAndHold: {
+        console.log("BooksDragArea onPressAndHold")
         if (!shelfView.editMode) {
             shelfView.startEditing()
         }
     }
     onPositionChanged: {
+        console.log("BooksDragArea onPositionChanged")
         if (shelfView.editMode) {
             if (!pressedItemScaling && !dragInProgress && pressedDeleteItemIndex < 0) {
                 startDrag(mouseX, mouseY)
@@ -153,6 +171,7 @@ MouseArea {
     }
 
     function startDrag(x, y) {
+        console.log("BooksDragArea startDrag")
         var index = gridView.indexAt(x + gridView.contentX, y + currentShelfView.contentY)
         if (index >= 0) {
             var item = shelf.get(index)
@@ -180,6 +199,7 @@ MouseArea {
     }
 
     function doDrag(x, y) {
+        console.log("BooksDragArea doDrag", x, y)
         if (dragInProgress && !dragItem.moving) {
             var dx = x - dragLastX
             var dy = y - dragLastY
@@ -239,6 +259,7 @@ MouseArea {
     }
 
     function stopDrag(x, y) {
+        console.log("BooksDragArea stopDrag", x, y)
         lastReleasedItemIndex = pressedItemIndex
         lastReleasedDeleteItemIndex = pressedDeleteItemIndex
         if (draggedItemIndex >= 0) {
@@ -259,6 +280,7 @@ MouseArea {
     }
 
     function finishDrag() {
+        console.log("BooksDragArea finishDrag")
         console.log(shelf.path, "done with drag animation")
         draggedItemIndex = -1
         dragItem.dropShelfIndex = -1
@@ -268,6 +290,7 @@ MouseArea {
     }
 
     function resetPressState() {
+        console.log("BooksDragArea resetPressState")
         pressedItemIndex = -1
         pressedDeleteItemIndex = -1
         lastReleasedItemIndex = -1

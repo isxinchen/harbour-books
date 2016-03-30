@@ -32,6 +32,7 @@
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
 import harbour.books 1.0
+import "Theme.js" as Theme
 
 CPage {
     id: root
@@ -51,7 +52,10 @@ CPage {
 
     Connections {
         target: globalSettings
-        onCurrentBookChanged: createBookViewIfNeeded()
+        onCurrentBookChanged: {
+            console.log("BooksMainPage onCurrentBookChanged")
+            createBookViewIfNeeded()
+        }
     }
 
     Component {
@@ -62,7 +66,7 @@ CPage {
             visible: opacity > 0
             book: globalSettings.currentBook ? globalSettings.currentBook : null
             onCloseBook: globalSettings.currentBook = null
-//            Behavior on opacity { FadeAnimation {} }
+            Behavior on opacity { FadeAnimation {} }
         }
     }
 
@@ -71,8 +75,34 @@ CPage {
         anchors.fill: parent
         opacity: globalSettings.currentBook ? 0 : 1
         visible: opacity > 0
-//        Behavior on opacity { FadeAnimation {} }
-        onOpenBook: globalSettings.currentBook = book
+        Behavior on opacity { FadeAnimation {} }
+        onOpenBook: {
+            console.log("BooksMainPage onOpenBook", book)
+            globalSettings.currentBook = book
+        }
+    }
+
+    Keys.onPressed: {
+        console.log("videoplayer onPressed key event:" + event.key);
+        if(!globalSettings.currentBook){
+            return;
+        }
+
+        if(event.key === Qt.Key_Back){
+            event.accepted = true;
+        }
+    }
+
+    Keys.onReleased: {
+        console.log("videoplayer onReleased key event:" + event.key);
+        if(!globalSettings.currentBook){
+            return;
+        }
+
+        if(event.key === Qt.Key_Back){
+            globalSettings.currentBook = null
+            event.accepted = true;
+        }
     }
 
     Component.onCompleted: createBookViewIfNeeded()

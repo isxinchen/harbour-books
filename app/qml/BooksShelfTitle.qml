@@ -31,6 +31,7 @@
 
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
+import "Theme.js" as Theme
 
 MouseArea {
     id: root
@@ -93,7 +94,7 @@ MouseArea {
                 color: (currentFolder || pressed) ? Theme.highlightColor : Theme.primaryColor
                 visible: opacity > 0
                 opacity: editable ? 0 : 1
-//                Behavior on opacity { FadeAnimation {} }
+                Behavior on opacity { FadeAnimation {} }
                 Behavior on color { ColorAnimation { duration: 100 } }
             }
 
@@ -110,7 +111,7 @@ MouseArea {
 //                textTopMargin: 0
                 visible: opacity > 0
                 opacity: editable ? 1 : 0
-//                Behavior on opacity { FadeAnimation {} }
+                Behavior on opacity { FadeAnimation {} }
                 //% "Enter folder name"
                 placeholderText: qsTrId("shelf-title-placeholder")
 //                EnterKey.enabled: text.length > 0 && text !== "." && text !== ".." && text.indexOf("/") < 0

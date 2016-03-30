@@ -1,9 +1,12 @@
 TARGET = fbreader
-CONFIG += sailfishapp link_pkgconfig
-PKGCONFIG += sailfishapp mlite5 glib-2.0
+CONFIG += link_pkgconfig
+PKGCONFIG += mlite5 glib-2.0
+
+PKGCONFIG += syberos-application syberos-application-cache
+
 #QT += dbus
 
-QT += qml quick
+QT += qml quick gui-private
 
 !include(../common.pri)
 
@@ -123,6 +126,7 @@ INCLUDEPATH += \
   $$FBREADER_DIR/fbreader/zlibrary/ui/src/qt4
 
 SOURCES += \
+  src/MGConfItem.cpp \
   src/BooksBook.cpp \
   src/BooksBookModel.cpp \
   src/BooksConfig.cpp \
@@ -148,13 +152,16 @@ SOURCES += \
   src/BooksUtil.cpp \
   src/main.cpp \
   src/ZLApplication.cpp \
-  src/ZLibrary.cpp
+  src/ZLibrary.cpp \
+    src/fbreader_workspace.cpp
+
 
 # Stubs for the libraries not allowed in harbour
 #SOURCES += \
 #  stubs/libexpat.c
 #  stubs/libmagic.c \
 #  stubs/libudev.c
+
 
 HEADERS += \
   src/BooksBook.h \
@@ -183,4 +190,6 @@ HEADERS += \
   src/BooksTextView.h \
   src/BooksTextStyle.h \
   src/BooksTypes.h \
-  src/BooksUtil.h
+  src/BooksUtil.h \
+    src/MGConfItem.h \
+    src/fbreader_workspace.h

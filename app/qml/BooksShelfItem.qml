@@ -32,6 +32,7 @@
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
 import harbour.books 1.0
+import "Theme.js" as Theme
 
 Item {
     id: root
@@ -101,7 +102,7 @@ Item {
         borderWidth: book ? _borderWidth : 0
         borderColor: _borderColor
         opacity: (copyingIn || copyingOut) ? 0.1 : 1
-//        Behavior on opacity { FadeAnimation { } }
+        Behavior on opacity { FadeAnimation { } }
 
         BooksTitleText {
             id: title
@@ -132,7 +133,10 @@ Item {
             fill: parent
             margins: -Theme.paddingSmall
         }
-        onClicked: root.clicked()
+        onClicked: {
+            console.log("BooksShelfItem onClick")
+            root.clicked()
+        }
     }
 
     Loader {
@@ -165,8 +169,9 @@ Item {
         sizeMode: 0
         x: cover.x + cover.centerX - width/2
         y: cover.y + cover.centerY - height/2
-        visible: opacity > 0
-        running: copying && !longCopyTimer.running && !_haveProgress
+//        visible: opacity > 0
+//        running: copying && !longCopyTimer.running && !_haveProgress
+        visible: copying && !longCopyTimer.running && !_haveProgress
         Behavior on opacity { enabled: false }
     }
 

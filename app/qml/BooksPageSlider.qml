@@ -34,6 +34,7 @@
 
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
+import "Theme.js" as Theme
 
 MouseArea {
     id: slider
@@ -54,8 +55,8 @@ MouseArea {
     property alias label: labelText.text
     property bool down: pressed
     property bool highlighted: down
-    property real leftMargin: Math.round(Screen.width/8)
-    property real rightMargin: Math.round(Screen.width/8)
+    property real leftMargin: Math.round(gWindow.width/8)
+    property real rightMargin: Math.round(gWindow.width/8)
 
     property bool _hasValueLabel: false
     property real _oldValue

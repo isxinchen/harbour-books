@@ -32,6 +32,7 @@
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
 import harbour.books 1.0
+import "Theme.js" as Theme
 
 Flickable {
     id: root
@@ -158,7 +159,7 @@ Flickable {
             }
         }
 
-//        Behavior on opacity { FadeAnimation {} }
+        Behavior on opacity { FadeAnimation {} }
 
         BooksPageTools {
             id: pageTools
@@ -171,7 +172,7 @@ Flickable {
             rightMargin: bookModel.rightMargin
             opacity: _currentState.tools ? 1 : 0
             visible: opacity > 0 && book && bookModel.pageCount && !_loading
-//            Behavior on opacity { FadeAnimation {} }
+            Behavior on opacity { FadeAnimation {} }
             onIncreaseFontSize: bookModel.increaseFontSize()
             onDecreaseFontSize: bookModel.decreaseFontSize()
         }
@@ -187,7 +188,7 @@ Flickable {
             opacity: (_currentState.pager && book && bookModel.pageCount) ? 0.75 : 0
             visible: opacity > 0
             onPageChanged: bookView.jumpTo(page)
-//            Behavior on opacity { FadeAnimation {} }
+            Behavior on opacity { FadeAnimation {} }
         }
     }
 
@@ -211,7 +212,8 @@ Flickable {
         anchors.centerIn: parent
 //        size: BusyIndicatorSize.Large
         sizeMode: 0
-        running: _loading
+//        running: _loading
+        visible: _loading
     }
 
     BooksFitLabel {
@@ -232,7 +234,7 @@ Flickable {
         enabled: _loading && bookModel.resetReason === BookModel.ReasonLoading
         visible: opacity > 0
         opacity: enabled ? 1.0 : 0.0
-//        Behavior on opacity { FadeAnimation { } }
+        Behavior on opacity { FadeAnimation { } }
     }
 
     CLabel {
@@ -246,7 +248,7 @@ Flickable {
         color: Theme.highlightColor
         opacity: _loading ? 1 : 0
         visible: opacity > 0
-//        Behavior on opacity { FadeAnimation {} }
+        Behavior on opacity { FadeAnimation {} }
         text: bookModel ? _loadingTextLabel[bookModel.resetReason] : ""
     }
 }

@@ -31,6 +31,7 @@
 
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
+import "Theme.js" as Theme
 
 Item {
     id: title
@@ -39,7 +40,7 @@ Item {
     property alias color: label.color
 
     visible: opacity > 0
-//    Behavior on opacity { FadeAnimation {} }
+    Behavior on opacity { FadeAnimation {} }
 
     Component.onCompleted: updateLayout()
 

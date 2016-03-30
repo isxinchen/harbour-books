@@ -111,11 +111,11 @@ private:
     int fontSize(int aFontSizeAdjust) const;
 
 private:
-//    MGConfItem* iFontSizeConf;
-//    MGConfItem* iPageDetailsConf;
-//    MGConfItem* iInvertColorsConf;
-//    MGConfItem* iCurrentFolderConf;
-//    MGConfItem* iCurrentBookPathConf;
+    MGConfItem* iFontSizeConf;
+    MGConfItem* iPageDetailsConf;
+    MGConfItem* iInvertColorsConf;
+    MGConfItem* iCurrentFolderConf;
+    MGConfItem* iCurrentBookPathConf;
     mutable shared_ptr<ZLTextStyle> iTextStyle[FontSizeSteps+1];
     BooksBook* iCurrentBook;
     QString iCurrentStorageDevice;

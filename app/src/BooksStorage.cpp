@@ -283,7 +283,8 @@ BooksStorageManager::Private::Private() :
     iScanMountsTimer(NULL)
 {
     QString homeDevice;
-    QString homeBooks = QDir::homePath();
+//    QString homeBooks = QDir::homePath();
+    QString homeBooks = "/home/user";
     QString homeMount(BooksStorage::Private::mountPoint(homeBooks));
     if (!homeBooks.endsWith('/')) homeBooks += '/';
     homeBooks += QLatin1String(BOOKS_INTERNAL_ROOT);

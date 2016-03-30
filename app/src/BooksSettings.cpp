@@ -39,7 +39,7 @@
 
 #include "HarbourDebug.h"
 
-//#include <MGConfItem>
+#include "MGConfItem.h"
 
 #define DCONF_PATH              BOOKS_DCONF_ROOT
 #define KEY_FONT_SIZE           "fontSize"
@@ -199,21 +199,21 @@ BooksSettings::TextStyle::allowHyphenations() const
 
 BooksSettings::BooksSettings(QObject* aParent) :
     QObject(aParent),
-//    iFontSizeConf(new MGConfItem(DCONF_PATH KEY_FONT_SIZE, this)),
-//    iPageDetailsConf(new MGConfItem(DCONF_PATH KEY_PAGE_DETAILS, this)),
-//    iInvertColorsConf(new MGConfItem(DCONF_PATH KEY_INVERT_COLORS, this)),
-//    iCurrentFolderConf(new MGConfItem(DCONF_PATH KEY_CURRENT_FOLDER, this)),
-//    iCurrentBookPathConf(new MGConfItem(DCONF_PATH KEY_CURRENT_BOOK, this)),
+    iFontSizeConf(new MGConfItem(DCONF_PATH KEY_FONT_SIZE, this)),
+    iPageDetailsConf(new MGConfItem(DCONF_PATH KEY_PAGE_DETAILS, this)),
+    iInvertColorsConf(new MGConfItem(DCONF_PATH KEY_INVERT_COLORS, this)),
+    iCurrentFolderConf(new MGConfItem(DCONF_PATH KEY_CURRENT_FOLDER, this)),
+    iCurrentBookPathConf(new MGConfItem(DCONF_PATH KEY_CURRENT_BOOK, this)),
     iCurrentBook(NULL),
     iFontSize(currentFontSize())
 {
     updateCurrentBook();
     updateCurrentStorage();
-//    connect(iFontSizeConf, SIGNAL(valueChanged()), SLOT(onFontSizeValueChanged()));
-//    connect(iPageDetailsConf, SIGNAL(valueChanged()), SIGNAL(pageDetailsChanged()));
-//    connect(iInvertColorsConf, SIGNAL(valueChanged()), SIGNAL(invertColorsChanged()));
-//    connect(iCurrentFolderConf, SIGNAL(valueChanged()), SLOT(onCurrentFolderChanged()));
-//    connect(iCurrentBookPathConf, SIGNAL(valueChanged()), SLOT(onCurrentBookPathChanged()));
+    connect(iFontSizeConf, SIGNAL(valueChanged()), SLOT(onFontSizeValueChanged()));
+    connect(iPageDetailsConf, SIGNAL(valueChanged()), SIGNAL(pageDetailsChanged()));
+    connect(iInvertColorsConf, SIGNAL(valueChanged()), SIGNAL(invertColorsChanged()));
+    connect(iCurrentFolderConf, SIGNAL(valueChanged()), SLOT(onCurrentFolderChanged()));
+    connect(iCurrentBookPathConf, SIGNAL(valueChanged()), SLOT(onCurrentBookPathChanged()));
 }
 
 bool
@@ -241,14 +241,14 @@ BooksSettings::decreaseFontSize()
 int
 BooksSettings::currentFontSize() const
 {
-//    const int fontSize = iFontSizeConf->value(DEFAULT_FONT_SIZE).toInt();
-//    if (fontSize < MinFontSize) {
-//        return MinFontSize;
-//    } else if (fontSize > MaxFontSize) {
-//        return MaxFontSize;
-//    } else {
-//        return fontSize;
-//    }
+    const int fontSize = iFontSizeConf->value(DEFAULT_FONT_SIZE).toInt();
+    if (fontSize < MinFontSize) {
+        return MinFontSize;
+    } else if (fontSize > MaxFontSize) {
+        return MaxFontSize;
+    } else {
+        return fontSize;
+    }
 }
 
 int
@@ -270,7 +270,7 @@ BooksSettings::setFontSize(
     int aValue)
 {
     HDEBUG(aValue);
-//    iFontSizeConf->set(aValue);
+    iFontSizeConf->set(aValue);
 }
 
 void
@@ -305,8 +305,7 @@ BooksSettings::textStyle(
 int
 BooksSettings::pageDetails() const
 {
-//    return iPageDetailsConf->value(DEFAULT_PAGE_DETAILS).toInt();
-    return 0;
+    return iPageDetailsConf->value(DEFAULT_PAGE_DETAILS).toInt();
 }
 
 void
@@ -314,14 +313,13 @@ BooksSettings::setPageDetails(
     int aValue)
 {
     HDEBUG(aValue);
-//    iPageDetailsConf->set(aValue);
+    iPageDetailsConf->set(aValue);
 }
 
 bool
 BooksSettings::invertColors() const
 {
-//    return iInvertColorsConf->value(DEFAULT_INVERT_COLORS).toBool();
-    return false;
+    return iInvertColorsConf->value(DEFAULT_INVERT_COLORS).toBool();
 }
 
 void
@@ -329,13 +327,13 @@ BooksSettings::setInvertColors(
     bool aValue)
 {
     HDEBUG(aValue);
-//    iInvertColorsConf->set(aValue);
+    iInvertColorsConf->set(aValue);
 }
 
 QString
 BooksSettings::currentFolder() const
 {
-//    return iCurrentFolderConf->value(DEFAULT_CURRENT_FOLDER).toString();
+    return iCurrentFolderConf->value(DEFAULT_CURRENT_FOLDER).toString();
 }
 
 void
@@ -343,7 +341,7 @@ BooksSettings::setCurrentFolder(
     QString aValue)
 {
     HDEBUG(aValue);
-//    iCurrentFolderConf->set(aValue);
+    iCurrentFolderConf->set(aValue);
 }
 
 void
@@ -377,52 +375,52 @@ void
 BooksSettings::setCurrentBook(
     QObject* aBook)
 {
-//    BooksBook* book = qobject_cast<BooksBook*>(aBook);
-//    if (iCurrentBook != book) {
-//        if (iCurrentBook) iCurrentBook->release();
-//        if (book) {
-//            HDEBUG(book->path());
-//            (iCurrentBook = book)->retain();
-//            iCurrentBookPathConf->set(book->path());
-//        } else {
-//            iCurrentBook = NULL;
-//            iCurrentBookPathConf->set(QString());
-//        }
-//        Q_EMIT currentBookChanged();
-//    }
+    BooksBook* book = qobject_cast<BooksBook*>(aBook);
+    if (iCurrentBook != book) {
+        if (iCurrentBook) iCurrentBook->release();
+        if (book) {
+            HDEBUG(book->path());
+            (iCurrentBook = book)->retain();
+            iCurrentBookPathConf->set(book->path());
+        } else {
+            iCurrentBook = NULL;
+            iCurrentBookPathConf->set(QString());
+        }
+        Q_EMIT currentBookChanged();
+    }
 }
 
 bool
 BooksSettings::updateCurrentBook()
 {
-//    QString path = iCurrentBookPathConf->value(DEFAULT_CURRENT_BOOK).toString();
-//    if (path.isEmpty()) {
-//        if (iCurrentBook) {
-//            iCurrentBook->release();
-//            iCurrentBook = NULL;
-//            return true;
-//        }
-//    } else if (!iCurrentBook || iCurrentBook->path() != path) {
-//        shared_ptr<Book> book = BooksUtil::bookFromFile(path);
-//        if (!book.isNull()) {
-//            QString rel;
-//            QFileInfo info(path);
-//            BooksStorageManager* mgr = BooksStorageManager::instance();
-//            BooksStorage storage = mgr->storageForPath(info.path(), &rel);
-//            if (storage.isValid()) {
-//                if (iCurrentBook) iCurrentBook->release();
-//                iCurrentBook = new BooksBook(storage, rel, book);
-//                iCurrentBook->requestCoverImage();
-//                return true;
-//            }
-//        }
-//        if (iCurrentBook) {
-//            iCurrentBook->release();
-//            iCurrentBook = NULL;
-//            return true;
-//        }
-//    }
-//    return false;
+    QString path = iCurrentBookPathConf->value(DEFAULT_CURRENT_BOOK).toString();
+    if (path.isEmpty()) {
+        if (iCurrentBook) {
+            iCurrentBook->release();
+            iCurrentBook = NULL;
+            return true;
+        }
+    } else if (!iCurrentBook || iCurrentBook->path() != path) {
+        shared_ptr<Book> book = BooksUtil::bookFromFile(path);
+        if (!book.isNull()) {
+            QString rel;
+            QFileInfo info(path);
+            BooksStorageManager* mgr = BooksStorageManager::instance();
+            BooksStorage storage = mgr->storageForPath(info.path(), &rel);
+            if (storage.isValid()) {
+                if (iCurrentBook) iCurrentBook->release();
+                iCurrentBook = new BooksBook(storage, rel, book);
+                iCurrentBook->requestCoverImage();
+                return true;
+            }
+        }
+        if (iCurrentBook) {
+            iCurrentBook->release();
+            iCurrentBook = NULL;
+            return true;
+        }
+    }
+    return false;
 }
 
 void

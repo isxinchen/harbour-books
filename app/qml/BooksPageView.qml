@@ -32,6 +32,7 @@
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
 import harbour.books 1.0
+import "Theme.js" as Theme
 
 Item {
     id: view
@@ -76,9 +77,10 @@ Item {
         anchors.centerIn: parent
 //        size: BusyIndicatorSize.Large
         sizeMode: 0
-        running: widget.loading
-        opacity: running ? 1 : 0
-        visible: opacity > 0
+//        running: widget.loading
+//        opacity: running ? 1 : 0
+//        visible: opacity > 0
+        visible: widget.loading
         Behavior on opacity {}
     }
 
@@ -94,7 +96,7 @@ Item {
         color: globalSettings.primaryPageToolColor
         opacity: pageNumberVisible ? 1 : 0
         visible: opacity > 0
-//        Behavior on opacity { FadeAnimation {} }
+        Behavior on opacity { FadeAnimation {} }
     }
 
     MouseArea {

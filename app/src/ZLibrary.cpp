@@ -49,6 +49,7 @@
 #include "iconv/IConvEncodingConverter.h"
 
 //#include <sailfishapp.h>
+#include <SyberosGuiCache>
 
 #include <QGuiApplication>
 #include <QStandardPaths>
@@ -169,7 +170,8 @@ void ZLibrary::run(ZLApplication* aApp)
     HDEBUG("qml file" << qPrintable(qml));
 
 //    QQuickView* view = SailfishApp::createView();
-    QQuickView* view = new QQuickView;
+//    QQuickView* view = new QQuickView;
+    QQuickView* view = SYBEROS::SyberosGuiCache::qQuickView();
     QQmlContext* root = view->rootContext();
     QSize screenSize(view->screen()->size());
     booksPPI =

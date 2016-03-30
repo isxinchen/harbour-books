@@ -99,7 +99,7 @@ Item {
         id: busyIndicator
         anchors.centerIn: parent
         visible: !root.enabled
-        running: visible
+//        running: visible
 //        size: BusyIndicatorSize.Medium
         sizeMode: 0
     }

@@ -31,6 +31,7 @@
 
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
+import "Theme.js" as Theme
 
 Item {
 
@@ -53,11 +54,12 @@ Item {
 
     CIndicator {
         id: busy
-        visible: opacity > 0
+//        visible: opacity > 0
         anchors.centerIn: parent
 //        size: BusyIndicatorSize.Large
         sizeMode: 0
-        running: footerState == 1 && allowBusyIndicator
+//        running: footerState == 1 && allowBusyIndicator
+        visible: footerState == 1 && allowBusyIndicator
         Behavior on opacity { enabled: false }
     }
 }

@@ -32,6 +32,7 @@
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
 import harbour.books 1.0
+import "Theme.js" as Theme
 
 CDialog {
     id: root
@@ -75,7 +76,7 @@ CDialog {
 
             opacity: (importModel.count > 0) ? 1 : 0
             visible: opacity > 0
-//            Behavior on opacity { FadeAnimation {} }
+            Behavior on opacity { FadeAnimation {} }
 
             delegate: BooksImportItem {
                 width: root.width
@@ -96,11 +97,12 @@ CDialog {
 
     CIndicator {
         id: busyIndicator
-        visible: opacity > 0
+//        visible: opacity > 0
         anchors.centerIn: parent
 //        size: BusyIndicatorSize.Large
         sizeMode: 0
-        running: _loading && !importModel.count
+//        running: _loading && !importModel.count
+        visible: _loading && !importModel.count
     }
 
     BooksFitLabel {

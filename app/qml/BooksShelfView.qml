@@ -32,6 +32,7 @@
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
 import harbour.books 1.0
+import "Theme.js" as Theme
 
 Item {
     id: shelfView
@@ -171,6 +172,7 @@ Item {
         cellWidth: shelfView.cellWidth
         cellHeight: shelfView.cellHeight
         flickableDirection: Flickable.VerticalFlick
+
         header: Column {
             Repeater {
                 model: pathModel
@@ -233,6 +235,18 @@ Item {
             allowBusyIndicator: !longStartTimer.running
             footerState: _haveBooks ? 0 : _loading ? 1 : 2
             visible: !_haveBooks
+
+            onFooterStateChanged: {
+                console.log("BooksShelfView: onFooterStateChanged", footerState)
+            }
+
+            onVisibleChanged: {
+                console.log("BooksShelfView: onVisibleChanged", visible)
+            }
+
+            onAllowBusyIndicatorChanged: {
+                console.log("BooksShelfView: onAllowBusyIndicatorChanged", allowBusyIndicator)
+            }
         }
 
         property real itemOpacity: 1

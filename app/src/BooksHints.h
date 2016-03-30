@@ -37,7 +37,8 @@
 #include "BooksTypes.h"
 #include <QtQml>
 
-class MGConfItem;
+//class MGConfItem;
+#include "MGConfItem.h"
 
 class BooksHints : public QObject
 {

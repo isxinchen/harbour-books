@@ -31,6 +31,7 @@
 
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
+import "Theme.js" as Theme
 
 Text {
     color: Theme.primaryColor

@@ -31,6 +31,7 @@
 
 import QtQuick 2.0
 import com.syberos.basewidgets 2.0
+import "Theme.js" as Theme
 
 Column {
     id: root
@@ -112,7 +113,7 @@ Column {
             // count can be left there, it doesn't overlap with anything
             opacity: (needed) ? 1 : 0
             visible: opacity > 0
-//            Behavior on opacity { FadeAnimation {} }
+            Behavior on opacity { FadeAnimation {} }
         }
 
         CLabel {
@@ -128,7 +129,7 @@ Column {
             color: Theme.highlightColor
             opacity: (showCount && count > 0) ? 1 : 0
             visible: opacity > 0
-//            Behavior on opacity { FadeAnimation {} }
+            Behavior on opacity { FadeAnimation {} }
         }
     }
 
