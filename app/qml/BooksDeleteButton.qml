@@ -54,7 +54,7 @@ Rectangle {
         anchors.fill: parent
         sourceSize.width: width
         sourceSize.height: height
-        source: "images/close-x.svg"
+        source: "images/close-x.png"
     }
 
     MouseArea {

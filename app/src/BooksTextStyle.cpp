@@ -136,7 +136,7 @@ ZLTextAlignmentType BooksTextStyle::alignment() const
 
 double BooksTextStyle::lineSpace() const
 {
-    return 1.4;
+    return 3;
 }
 
 bool BooksTextStyle::allowHyphenations() const

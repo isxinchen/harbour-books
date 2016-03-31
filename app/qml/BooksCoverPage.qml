@@ -76,7 +76,7 @@ Item {
         Image {
             anchors.centerIn: parent
             anchors.horizontalCenter:  parent.horizontalCenter
-            source: "images/cover-image.svg"
+            source: "images/cover-image.png"
             width: parent.width - Math.max(Math.ceil(parent.width/20),2)
             sourceSize.width: width
             sourceSize.height: height

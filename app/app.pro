@@ -67,7 +67,13 @@ qml_dir.path = $$TARGET_DATA_DIR/
 
 target.path = $$TARGET_DATA_DIR/bin
 
-INSTALLS += target qml_dir
+default_cover.files = qml/images/default-cover.jpg
+default_cover.path = $$TARGET_ZLIBRARY_DATA_DIR
+
+default_icon.files = icons/harbour-books.png
+default_icon.path = $$TARGET_DATA_DIR/icons
+
+INSTALLS += target qml_dir default_cover default_icon
 
 core_data.files = \
   data/zlibrary/core/*.gz \

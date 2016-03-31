@@ -4,7 +4,7 @@
     <uses-permission syberos:name="syberos.permission.ACCESS_STORAGE"/>
     <uses-permission syberos:name="syberos.permission.ACCESS_WIFI"/>
     <uses-sdk syberos:minSdkVersion="" syberos:targetSdkVersion=""/>
-    <application syberos:description="Brief introduction of your application here. " syberos:name="FBReader" syberos:icon="res/video-player.png" syberos:debuggable="true">
+    <application syberos:description="Brief introduction of your application here. " syberos:name="FBReader" syberos:icon="icons/harbour-books.png" syberos:debuggable="true">
         <uiapp syberos:id="fbreader" syberos:exec="bin/fbreader" syberos:launcher="true" syberos:name="" syberos:splash="" syberos:icon="" syberos:background="">
             <url syberos:id="">
                 <scheme>fbreader</scheme>

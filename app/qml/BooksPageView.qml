@@ -54,6 +54,8 @@ Item {
     PageWidget {
         id: widget
         anchors.fill: parent
+        topMargin: 20
+        bottomMargin: 20
         settings: globalSettings
         model: bookModel
     }
@@ -64,6 +66,7 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
+            topMargin: 10
             leftMargin: Math.max(view.leftMargin, leftSpaceReserved)
             rightMargin: Math.max(view.rightMargin, rightSpaceReserved)
         }
@@ -75,11 +78,7 @@ Item {
 
     CIndicator {
         anchors.centerIn: parent
-//        size: BusyIndicatorSize.Large
         sizeMode: 0
-//        running: widget.loading
-//        opacity: running ? 1 : 0
-//        visible: opacity > 0
         visible: widget.loading
         Behavior on opacity {}
     }
@@ -88,6 +87,7 @@ Item {
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
+            bottomMargin: 10
         }
         text: widget.page + 1
         height: Theme.itemSizeExtraSmall

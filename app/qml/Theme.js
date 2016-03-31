@@ -5,7 +5,7 @@ var horizontalPageMargin = 10
 var itemSizeSmall = 10
 var itemSizeMedium = 20
 var itemSizeLarge = 30
-var itemSizeExtraSmall = 10
+var itemSizeExtraSmall = 20
 var itemSizeExtraMedium = 10
 var itemSizeExtraLarge = 10
 var highlightColor = Qt.rgba(0.3, 0.3, 0.3, 1)
@@ -20,8 +20,8 @@ var primaryColor = Qt.rgba(0.5, 0.5, 0, 1)
 var secondaryColor = Qt.rgba(0.5, 0.5, 0.5, 1)
 
 var fontSizeTiny = 20
-var fontSizeSmall = 15
-var fontSizeMedium = 20
+var fontSizeSmall = 20
+var fontSizeMedium = 25
 var fontSizeLarge = 28
 
 var fontSizeExtraSmall = 20

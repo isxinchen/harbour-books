@@ -56,7 +56,7 @@ MouseArea {
     property bool dragCloseToTheRightEdge
     property real dragLastX
     property real dragLastY
-    property bool _ignorePress: true
+    property bool _ignorePress: false
 
     onDraggedItemIndexChanged: {
         draggedItem = (draggedItemIndex >= 0) ? shelf.get(draggedItemIndex) : null
@@ -128,14 +128,18 @@ MouseArea {
         pressedItemIndex = index
         if (pressedDeleteItemIndex < 0 &&
             dragItem.withinDeleteButton(mouseX - itemX(index), mouseY - itemY(index))) {
+            console.log("BooksDragArea onPressed 1")
             pressedDeleteItemIndex = index
         } else {
+            console.log("BooksDragArea onPressed 2")
             pressedDeleteItemIndex = -1
         }
         if (mouseY + gridView.contentY < 0) {
+            console.log("BooksDragArea onPressed 3")
             // Let the header item handle it
             mouse.accepted = false
         } else if (_ignorePress) {
+            console.log("BooksDragArea onPressed 4")
             // If the first press isn't ignored here then the first flick
             // won't work. The problem has something to do with this drag
             // area as everything works fine if the drag area is removed.

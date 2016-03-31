@@ -46,7 +46,7 @@ CPage {
 
     function createBookViewIfNeeded() {
         if (globalSettings.currentBook && !_bookView) {
-            _bookView = bookViewComponent.createObject(root)
+            _bookView = bookViewComponent.createObject(rootItem)
         }
     }
 
@@ -69,21 +69,24 @@ CPage {
             Behavior on opacity { FadeAnimation {} }
         }
     }
-
-    BooksStorageView {
-        id: storageView
+    contentAreaItem:Item{
+        id: rootItem
         anchors.fill: parent
-        opacity: globalSettings.currentBook ? 0 : 1
-        visible: opacity > 0
-        Behavior on opacity { FadeAnimation {} }
-        onOpenBook: {
-            console.log("BooksMainPage onOpenBook", book)
-            globalSettings.currentBook = book
+        BooksStorageView {
+            id: storageView
+            anchors.fill: parent
+            opacity: globalSettings.currentBook ? 0 : 1
+            visible: opacity > 0
+            Behavior on opacity { FadeAnimation {} }
+            onOpenBook: {
+                console.log("BooksMainPage onOpenBook", book)
+                globalSettings.currentBook = book
+            }
         }
     }
 
     Keys.onPressed: {
-        console.log("videoplayer onPressed key event:" + event.key);
+        console.log("BooksMainPage onPressed key event:" + event.key);
         if(!globalSettings.currentBook){
             return;
         }
@@ -94,7 +97,7 @@ CPage {
     }
 
     Keys.onReleased: {
-        console.log("videoplayer onReleased key event:" + event.key);
+        console.log("BooksMainPage onReleased key event:" + event.key);
         if(!globalSettings.currentBook){
             return;
         }

@@ -43,7 +43,10 @@ CPageStackWindow {
 
     property variant currentShelf: mainPage.currentShelf
 
-    BooksSettings { id: globalSettings }
+    BooksSettings {
+        id: globalSettings
+        fontSize: -5
+    }
     BooksHints { id: globalHints }
     SystemState { id: globalSystemState }
 

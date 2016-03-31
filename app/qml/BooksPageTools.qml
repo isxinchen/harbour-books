@@ -36,7 +36,7 @@ import "Theme.js" as Theme
 
 Item {
     id: pageTools
-    height: Theme.itemSizeExtraSmall
+    height: 200//Theme.itemSizeExtraSmall
     property real leftMargin: Theme.horizontalPageMargin
     property real rightMargin: Theme.horizontalPageMargin
     property real spacing: Theme.paddingLarge
@@ -62,7 +62,7 @@ Item {
 
         Image {
             id: dayModeImage
-            source: "images/day-mode.svg"
+            source: "images/day-mode.png"
             anchors {
                 left: parent.left
                 leftMargin: pageTools.leftMargin
@@ -76,7 +76,7 @@ Item {
         }
 
         Image {
-            source: "images/night-mode.svg"
+            source: "images/night-mode.png"
             anchors.fill: dayModeImage
             sourceSize.height: height
             opacity: globalSettings.invertColors ? 0 : 0.25
@@ -97,7 +97,7 @@ Item {
         }
         Image {
             id: increaseFontSizeButtonImage
-            source: "images/font-larger.svg"
+            source: "images/font-larger.png"
             anchors {
                 left: parent.left
                 leftMargin: _spacingBy2
@@ -121,7 +121,7 @@ Item {
         }
         Image {
             id: decreaseFontSizeButtonImage
-            source: "images/font-smaller.svg"
+            source: "images/font-smaller.png"
             anchors {
                 right: parent.right
                 rightMargin: _spacingBy2

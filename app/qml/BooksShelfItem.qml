@@ -86,7 +86,7 @@ Item {
         }
         sourceComponent: Image {
             visible: !cover.book
-            source: "images/bookshelf.svg"
+            source: "images/bookshelf.png"
             sourceSize.width: width
             sourceSize.height: height
         }
@@ -165,12 +165,9 @@ Item {
 
     CIndicator {
         id: busyIndicator
-//        size: BusyIndicatorSize.Medium
         sizeMode: 0
         x: cover.x + cover.centerX - width/2
         y: cover.y + cover.centerY - height/2
-//        visible: opacity > 0
-//        running: copying && !longCopyTimer.running && !_haveProgress
         visible: copying && !longCopyTimer.running && !_haveProgress
         Behavior on opacity { enabled: false }
     }

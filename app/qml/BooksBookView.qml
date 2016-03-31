@@ -46,8 +46,8 @@ Flickable {
     property bool _loading: minLoadingDelay.running || bookModel.loading
     property var _currentState: _visibilityStates[globalSettings.pageDetails % _visibilityStates.length]
     readonly property var _visibilityStates: [
-        { pager: false, page: false, title: false, tools: false },
-        { pager: false, page: true,  title: true,  tools: false },
+//        { pager: false, page: false, title: false, tools: false },
+//        { pager: false, page: true,  title: true,  tools: false },
         { pager: true,  page: true,  title: true,  tools: true  }
     ]
 
@@ -175,6 +175,9 @@ Flickable {
             Behavior on opacity { FadeAnimation {} }
             onIncreaseFontSize: bookModel.increaseFontSize()
             onDecreaseFontSize: bookModel.decreaseFontSize()
+            onVisibleChanged: {
+                console.log("BooksPageTools visible", visible)
+            }
         }
 
         BooksPager {
@@ -189,6 +192,9 @@ Flickable {
             visible: opacity > 0
             onPageChanged: bookView.jumpTo(page)
             Behavior on opacity { FadeAnimation {} }
+            onVisibleChanged: {
+                console.log("BooksPager visible", visible)
+            }
         }
     }
 
@@ -210,9 +216,7 @@ Flickable {
     CIndicator {
         id: busyIndicator
         anchors.centerIn: parent
-//        size: BusyIndicatorSize.Large
         sizeMode: 0
-//        running: _loading
         visible: _loading
     }
 

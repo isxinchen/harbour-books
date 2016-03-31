@@ -70,7 +70,7 @@ MouseArea {
                 height: label.height*3/4
                 sourceSize.height: height
                 fillMode: Image.PreserveAspectFit
-                source: "images/folder.svg"
+                source: "images/folder.png"
                 anchors {
                     left: parent.left
                     leftMargin: Theme.paddingMedium

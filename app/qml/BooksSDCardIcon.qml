@@ -50,6 +50,6 @@ Rectangle {
         height: parent.height
         sourceSize.height: height
         fillMode: Image.PreserveAspectFit
-        source: "images/sdcard.svg"
+        source: "images/sdcard.png"
     }
 }
