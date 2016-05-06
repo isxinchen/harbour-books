@@ -156,16 +156,26 @@ Item {
         easing.type: Easing.InOutQuad
         to: grid.minContentY
     }
+    Image {
+        id: grid_header
+        width: parent.width
+        height: 100
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        source: "images/bookshelf_header_bg.png"
+    }
 
     GridView {
         id: grid
         anchors {
-            top: storageHeader.bottom
+            top: grid_header.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            leftMargin: Math.floor((shelfView.width - _cellsPerRow * shelfView.cellWidth)/2)
+//            leftMargin: Math.floor((shelfView.width - _cellsPerRow * shelfView.cellWidth)/2)
         }
+
         model: shelfModel
         interactive: !dragInProgress && !scrollToTopAnimation.running
         clip: true
@@ -197,6 +207,10 @@ Item {
             }
         }
         delegate: BooksShelfItem {
+            Component.onCompleted: {
+                console.log(shelfView.cellWidth +","+ shelfView.cellHeight)
+            }
+
             editMode: shelfView.editMode
             dropped: dragItem.dropShelfIndex >= 0 &&
                      dragItem.dropShelfIndex === shelfView.shelfIndex &&

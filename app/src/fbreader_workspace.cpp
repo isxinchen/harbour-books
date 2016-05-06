@@ -24,6 +24,8 @@
 
 #include "ZLibrary.h"
 
+#include <QProcess>
+
 // If the current task is stuck for too long after being canceled it's
 // probably stuck forever. Let "too long" be 10 seconds.
 #if HARBOUR_DEBUG
@@ -51,6 +53,14 @@ FBReader_Workspace::FBReader_Workspace(int argc, char **argv)
     BOOKS_QML_REGISTER(BooksHints, "BooksHints");
     HarbourLib::registerTypes(BOOKS_QML_PLUGIN,
         BOOKS_QML_PLUGIN_V1, BOOKS_QML_PLUGIN_V2);
+
+    //拷贝内置书
+    QString program = "/bin/cp";
+    QStringList arguments;
+    arguments << "/data/apps/com.syberos.fbreader/books" << "/home/user/" << "-R";
+
+    QProcess *myProcess = new QProcess();
+    myProcess->start(program, arguments);
 
 //    QLocale locale;
 //    QTranslator* translator = new QTranslator(app);

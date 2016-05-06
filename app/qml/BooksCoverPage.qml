@@ -95,7 +95,13 @@ Item {
         borderColor: Theme.primaryColor
         synchronous: true
         book: root.book ? root.book : null
-        defaultCover: "images/default-cover.jpg"
+        defaultCover: {
+            var ext = book.path
+            console.log("ext" + ext)
+            if(1){
+               return "images/cover_epub.png"
+            }
+        }
         stretch: true
     }
 

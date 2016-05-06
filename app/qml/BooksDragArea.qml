@@ -159,9 +159,9 @@ MouseArea {
     }
     onPressAndHold: {
         console.log("BooksDragArea onPressAndHold")
-        if (!shelfView.editMode) {
-            shelfView.startEditing()
-        }
+//        if (!shelfView.editMode) {
+//            shelfView.startEditing()
+//        }
     }
     onPositionChanged: {
         console.log("BooksDragArea onPositionChanged")

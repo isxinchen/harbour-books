@@ -8,7 +8,10 @@ meta.path = /data/apps/com.syberos.fbreader
 syber.files = sopconfig.xml
 syber.path = /data/apps/com.syberos.fbreader
 
-INSTALLS += meta syber
+internalbook.files = books
+internalbook.path = /data/apps/com.syberos.fbreader
+
+INSTALLS += meta syber internalbook
 
 OTHER_FILES += \
     README.md \

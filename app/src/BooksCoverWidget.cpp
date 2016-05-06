@@ -107,7 +107,7 @@ private:
     static bool iMissing;
 };
 
-const char* BooksCoverWidget::DefaultImage::iImageName = "default-cover.jpg";
+const char* BooksCoverWidget::DefaultImage::iImageName = "covers/cover_default.png";
 QImage* BooksCoverWidget::DefaultImage::iImage = NULL;
 QImage* BooksCoverWidget::DefaultImage::iScaledImage = NULL;
 int BooksCoverWidget::DefaultImage::iRefCount = 0;
@@ -331,7 +331,8 @@ void BooksCoverWidget::onSizeChanged()
 
 bool BooksCoverWidget::empty() const
 {
-    return iScaledImage.isNull();
+    return iScaledImage.isNull() || from == SCALE_FROM_DEFAULT;
+//    return iScaledImage.isNull();
 }
 
 bool BooksCoverWidget::loading() const
@@ -365,6 +366,11 @@ void BooksCoverWidget::scaleImage(bool aWasEmpty)
         if (!iCoverImage.isNull()) {
             if (iSynchronous) {
                 iScaledImage = ScaleTask::scale(iCoverImage, w, h, iStretch);
+                if(iDefaultImage != NULL){
+                    from = iCoverImage == *iDefaultImage ? SCALE_FROM_DEFAULT : SCALE_FROM_COVER;
+                }else{
+                    from = SCALE_FROM_COVER;
+                }
                 update();
             } else {
                 iScaleTask = new ScaleTask(iCoverImage, w, h, iStretch);
@@ -391,6 +397,11 @@ void BooksCoverWidget::onScaleTaskDone()
     const bool wasEmpty(empty());
     HASSERT(iScaleTask == sender());
     iScaledImage = iScaleTask->iScaledImage;
+    if(iDefaultImage != NULL){
+        from = iCoverImage == *iDefaultImage ? SCALE_FROM_DEFAULT : SCALE_FROM_COVER;
+    }else{
+        from = SCALE_FROM_COVER;
+    }
     iScaleTask->release(this);
     iScaleTask = NULL;
     update();

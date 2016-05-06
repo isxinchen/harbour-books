@@ -78,17 +78,30 @@ Item {
 
     property bool scaledDown: (editMode && !dragged && !pressed && !dropped)
 
-    Loader {
-        active: !cover.book
-        anchors {
-            margins: root.margins
-            fill: parent
-        }
-        sourceComponent: Image {
-            visible: !cover.book
-            source: "images/bookshelf.png"
-            sourceSize.width: width
-            sourceSize.height: height
+//    Loader {
+//        active: !cover.book
+//        anchors {
+//            margins: root.margins
+//            fill: parent
+//        }
+//        sourceComponent: Image {
+//            visible: !cover.book
+//            source: "images/bookshelf.png"
+//            sourceSize.width: width
+//            sourceSize.height: height
+//        }
+//    }
+
+    Image {
+        anchors.fill: parent
+        source: {
+            if (model.index % 3 == 0) {
+                return "images/bookshelf_layer_center1.png"
+            } else if (model.index % 3 == 1) {
+                return "images/bookshelf_layer_center2.png"
+            } else if (model.index % 3 == 2) {
+                return "images/bookshelf_layer_center3.png"
+            }
         }
     }
 
@@ -98,9 +111,9 @@ Item {
             margins: root.margins
             fill: parent
         }
-        borderRadius: _borderRadius
-        borderWidth: book ? _borderWidth : 0
-        borderColor: _borderColor
+//        borderRadius: _borderRadius
+//        borderWidth: book ? _borderWidth : 0
+//        borderColor: _borderColor
         opacity: (copyingIn || copyingOut) ? 0.1 : 1
         Behavior on opacity { FadeAnimation { } }
 
@@ -126,6 +139,27 @@ Item {
                 gl_FragColor = vec4(mix(pixelColor.rgb/max(pixelColor.a, 0.00390625), color.rgb/max(color.a, 0.00390625), color.a) * pixelColor.a, pixelColor.a) * qt_Opacity;
             }"
         }
+//        defaultCover: {
+//            if(book == null){
+//                return "images/cover_default.png"
+//            }
+
+//            var ext = book.path.substring(book.path.lastIndexOf('.') + 1) ;
+//            console.log("ext" + ext)
+//            if(ext == "epub"){
+//                return "images/cover_epub.png"
+//            }else if(ext == "pdf"){
+//                return "images/cover_pdf.png"
+//            }else if(ext == "pdb"){
+//                return "images/cover_pdb.png"
+//            }else if(ext == "txt"){
+//                return "images/cover_txt.png"
+//            }else if(ext == "chm"){
+//                return "images/cover_chm.png"
+//            }else {
+//                return "images/cover_default.png"
+//            }
+//        }
     }
 
     MouseArea {

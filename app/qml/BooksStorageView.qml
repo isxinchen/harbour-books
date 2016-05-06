@@ -42,8 +42,8 @@ Flickable {
 
     signal openBook(var book)
 
-    property real _cellWidth
-    property real _cellHeight: Math.ceil(_cellWidth*8/5)
+    property real _cellWidth: 240
+    property real _cellHeight: Math.ceil(_cellWidth*6/5)
     property var draggedItem
     property var currentShelf
     property var currentShelfView
@@ -81,7 +81,8 @@ Flickable {
         return result
     }
 
-    Component.onCompleted: _cellWidth = calculateCellWidth()
+//    Component.onCompleted: _cellWidth = calculateCellWidth()
+//    Component.onCompleted: _cellWidth = 240
 
     onCurrentShelfChanged: {
         if (storageList.completed && currentShelf) {
@@ -136,11 +137,11 @@ Flickable {
         onNewStorage: storageList.scrollToPage(index)
     }
 
-    ListWatcher {
-        id: storageListWatcher
-        listView: storageList
-        onSizeChanged: _cellWidth = calculateCellWidth()
-    }
+//    ListWatcher {
+//        id: storageListWatcher
+//        listView: storageList
+//        onSizeChanged: _cellWidth = calculateCellWidth()
+//    }
 
     ListView {
         id: storageList

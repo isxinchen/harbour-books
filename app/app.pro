@@ -40,7 +40,7 @@ LIBS += \
   $$LINEBREAK_LIB \
   $$HARBOUR_LIB \
   $$BZIP2_LIB \
-  -lz -ldl -lexpat
+  -lz -ldl -lexpat -ludev
 
 OTHER_FILES += \
   icons/harbour-books.svg \
@@ -67,13 +67,13 @@ qml_dir.path = $$TARGET_DATA_DIR/
 
 target.path = $$TARGET_DATA_DIR/bin
 
-default_cover.files = qml/images/default-cover.jpg
-default_cover.path = $$TARGET_ZLIBRARY_DATA_DIR
+covers.files = qml/images/covers
+covers.path = $$TARGET_ZLIBRARY_DATA_DIR
 
 default_icon.files = icons/harbour-books.png
 default_icon.path = $$TARGET_DATA_DIR/icons
 
-INSTALLS += target qml_dir default_cover default_icon
+INSTALLS += target qml_dir covers default_icon
 
 core_data.files = \
   data/zlibrary/core/*.gz \

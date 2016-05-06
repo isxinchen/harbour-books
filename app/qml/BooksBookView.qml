@@ -160,25 +160,25 @@ Flickable {
         }
 
         Behavior on opacity { FadeAnimation {} }
-
-        BooksPageTools {
-            id: pageTools
-            anchors {
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            leftMargin: bookModel.leftMargin
-            rightMargin: bookModel.rightMargin
-            opacity: _currentState.tools ? 1 : 0
-            visible: opacity > 0 && book && bookModel.pageCount && !_loading
-            Behavior on opacity { FadeAnimation {} }
-            onIncreaseFontSize: bookModel.increaseFontSize()
-            onDecreaseFontSize: bookModel.decreaseFontSize()
-            onVisibleChanged: {
-                console.log("BooksPageTools visible", visible)
-            }
-        }
+//工具栏
+//        BooksPageTools {
+//            id: pageTools
+//            anchors {
+//                top: parent.top
+//                left: parent.left
+//                right: parent.right
+//            }
+//            leftMargin: bookModel.leftMargin
+//            rightMargin: bookModel.rightMargin
+//            opacity: _currentState.tools ? 1 : 0
+//            visible: opacity > 0 && book && bookModel.pageCount && !_loading
+//            Behavior on opacity { FadeAnimation {} }
+//            onIncreaseFontSize: bookModel.increaseFontSize()
+//            onDecreaseFontSize: bookModel.decreaseFontSize()
+//            onVisibleChanged: {
+//                console.log("BooksPageTools visible", visible)
+//            }
+//        }
 
         BooksPager {
             id: pager

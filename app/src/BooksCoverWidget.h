@@ -62,6 +62,10 @@ class BooksCoverWidget: public QQuickPaintedItem
     Q_PROPERTY(QPoint center READ center NOTIFY centerChanged)
 
 public:
+    enum ScaleFrom{
+        SCALE_FROM_DEFAULT,
+        SCALE_FROM_COVER
+    };
     BooksCoverWidget(QQuickItem* aParent = NULL);
     ~BooksCoverWidget();
 
@@ -135,6 +139,7 @@ private:
     QPoint iCenter;
     bool iStretch;
     bool iSynchronous;
+    ScaleFrom from;
 };
 
 #endif // BOOKS_COVER_WIDGET_H
