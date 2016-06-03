@@ -40,7 +40,7 @@ LIBS += \
   $$LINEBREAK_LIB \
   $$HARBOUR_LIB \
   $$BZIP2_LIB \
-  -lz -ldl -lexpat -ludev
+  -lz -ldl -lexpat -ludev -lsqlite3
 
 OTHER_FILES += \
   icons/harbour-books.svg \
@@ -70,7 +70,7 @@ target.path = $$TARGET_DATA_DIR/bin
 covers.files = qml/images/covers
 covers.path = $$TARGET_ZLIBRARY_DATA_DIR
 
-default_icon.files = icons/harbour-books.png
+default_icon.files = icons/logo.png
 default_icon.path = $$TARGET_DATA_DIR/icons
 
 INSTALLS += target qml_dir covers default_icon
@@ -159,7 +159,8 @@ SOURCES += \
   src/main.cpp \
   src/ZLApplication.cpp \
   src/ZLibrary.cpp \
-    src/fbreader_workspace.cpp
+    src/fbreader_workspace.cpp \
+    src/booksshelfmodel.cpp
 
 
 # Stubs for the libraries not allowed in harbour
@@ -198,4 +199,6 @@ HEADERS += \
   src/BooksTypes.h \
   src/BooksUtil.h \
     src/MGConfItem.h \
-    src/fbreader_workspace.h
+    src/fbreader_workspace.h \
+    src/booksshelfmodel.h \
+    src/debug.h

@@ -99,7 +99,43 @@ SOURCES += \
   $$CORE_SRC/network/ZLAsynchronousInputStream.cpp \
   $$CORE_SRC/network/ZLPlainAsynchronousInputStream.cpp \
   $$CORE_SRC/constants/ZLXMLNamespace.cpp \
-  $$CORE_SRC/constants/ZLMimeType.cpp
+  $$CORE_SRC/constants/ZLMimeType.cpp \
+    fbreader/fbreader/src/blockTree/FBReaderNode.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/ClearBooksDBRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/DeleteBookRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/DeleteFileEntriesRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/FindFileIdRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/InitBooksDBRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/LoadFileEntriesRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/LoadRecentBooksRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/SaveAuthorsRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/SaveBookRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/SaveBookStateStackRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/SaveRecentBooksRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/SaveSeriesRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/runnables/SaveTableBookRunnable.cpp \
+    fbreader/fbreader/src/database/booksdb/BooksDB.cpp \
+    fbreader/fbreader/src/database/booksdb/BooksDB_BookAuthor.cpp \
+    fbreader/fbreader/src/database/booksdb/BooksDB_BookSeries.cpp \
+    fbreader/fbreader/src/database/booksdb/BooksDB_BookTag.cpp \
+    fbreader/fbreader/src/database/booksdb/BooksDBQuery.cpp \
+    fbreader/fbreader/src/database/booksdb/BooksDBUtil.cpp \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteCommand.cpp \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteConnection.cpp \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteDataBase.cpp \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteDataReader.cpp \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteFactory.cpp \
+    fbreader/fbreader/src/database/sqldb/DataBase.cpp \
+    fbreader/fbreader/src/database/sqldb/DBCommand.cpp \
+    fbreader/fbreader/src/database/sqldb/DBCommandParameter.cpp \
+    fbreader/fbreader/src/database/sqldb/DBConnection.cpp \
+    fbreader/fbreader/src/database/sqldb/DBDataReader.cpp \
+    fbreader/fbreader/src/database/sqldb/DBIntValue.cpp \
+    fbreader/fbreader/src/database/sqldb/DBNullValue.cpp \
+    fbreader/fbreader/src/database/sqldb/DBRealValue.cpp \
+    fbreader/fbreader/src/database/sqldb/DBTextValue.cpp \
+    fbreader/fbreader/src/database/sqldb/DBValue.cpp \
+    fbreader/fbreader/src/fbreader/FBView.cpp
 
 HEADERS += \
   $$CORE_SRC/encoding/EncodingCollectionReader.h \
@@ -185,7 +221,58 @@ HEADERS += \
   $$CORE_SRC/network/ZLAsynchronousInputStream.h \
   $$CORE_SRC/network/ZLPlainAsynchronousInputStream.h \
   $$CORE_SRC/constants/ZLMimeType.h \
-  $$CORE_SRC/constants/ZLXMLNamespace.h
+  $$CORE_SRC/constants/ZLXMLNamespace.h \
+    fbreader/atom-tests/src/network/atom/ATOMConstructs.h \
+    fbreader/atom-tests/src/network/atom/ATOMContainers.h \
+    fbreader/atom-tests/src/network/atom/ATOMMetadata.h \
+    fbreader/atom-tests/src/network/authentication/basic/BasicAuthenticationManager.h \
+    fbreader/atom-tests/src/network/authentication/basic/BasicAuthenticationRequest.h \
+    fbreader/atom-tests/src/network/authentication/litres/LitResAuthenticationDataParser.h \
+    fbreader/atom-tests/src/network/authentication/litres/LitResAuthenticationManager.h \
+    fbreader/atom-tests/src/network/authentication/litres/LitResBookshelfItem.h \
+    fbreader/atom-tests/src/network/authentication/litres/LitResDataParser.h \
+    fbreader/atom-tests/src/network/authentication/litres/LitResGenre.h \
+    fbreader/atom-tests/src/network/authentication/litres/LitResGenresParser.h \
+    fbreader/atom-tests/src/network/authentication/litres/LitResUtil.h \
+    fbreader/atom-tests/src/network/authentication/NetworkAuthenticationManager.h \
+    fbreader/atom-tests/src/network/opds/NetworkOPDSFeedReader.h \
+    fbreader/atom-tests/src/network/opds/OPDSCatalogItem.h \
+    fbreader/atom-tests/src/network/opds/OPDSFeedReader.h \
+    fbreader/atom-tests/src/network/opds/OPDSLink.h \
+    fbreader/atom-tests/src/network/opds/OPDSLink_AdvancedSearch.h \
+    fbreader/atom-tests/src/network/opds/OPDSLink_Reader.h \
+    fbreader/atom-tests/src/network/opds/OPDSMetadata.h \
+    fbreader/atom-tests/src/network/opds/OPDSXMLParser.h \
+    fbreader/atom-tests/src/network/opds/URLRewritingRule.h \
+    fbreader/atom-tests/src/network/BookReference.h \
+    fbreader/atom-tests/src/network/NetworkBookCollection.h \
+    fbreader/atom-tests/src/network/NetworkComparators.h \
+    fbreader/atom-tests/src/network/NetworkErrors.h \
+    fbreader/atom-tests/src/network/NetworkItems.h \
+    fbreader/atom-tests/src/network/NetworkLink.h \
+    fbreader/atom-tests/src/network/NetworkLinkCollection.h \
+    fbreader/atom-tests/src/network/NetworkOperationData.h \
+    fbreader/atom-tests/src/network/SearchResult.h \
+    fbreader/atom-tests/src/network/UserList.h \
+    fbreader/atom-tests/src/Tests.h \
+    fbreader/fbreader/src/blockTree/FBReaderNode.h \
+    fbreader/fbreader/src/database/booksdb/BooksDB.h \
+    fbreader/fbreader/src/database/booksdb/BooksDBQuery.h \
+    fbreader/fbreader/src/database/booksdb/BooksDBUtil.h \
+    fbreader/fbreader/src/database/booksdb/DBRunnables.h \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteCommand.h \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteConnection.h \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteDataBase.h \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteDataReader.h \
+    fbreader/fbreader/src/database/sqldb/implsqlite/SQLiteFactory.h \
+    fbreader/fbreader/src/database/sqldb/DataBase.h \
+    fbreader/fbreader/src/database/sqldb/DBCommand.h \
+    fbreader/fbreader/src/database/sqldb/DBCommandParameter.h \
+    fbreader/fbreader/src/database/sqldb/DBConnection.h \
+    fbreader/fbreader/src/database/sqldb/DBDataReader.h \
+    fbreader/fbreader/src/database/sqldb/DBRunnable.h \
+    fbreader/fbreader/src/database/sqldb/DBValues.h
+
 
 # Text
 TEXT = $$FBREADER_DIR/zlibrary/text

@@ -75,7 +75,7 @@ public:
 	bool loadBookStateStack(const Book &book, std::deque<ReadingState> &stack);
 	bool saveBookStateStack(const Book &book, const std::deque<ReadingState> &stack);
 
-	bool removeBook(const Book &book);
+    bool removeBook(const shared_ptr<Book> book);
 
 	std::string getPalmType(const std::string &fileName);
 	bool setPalmType(const std::string &fileName, const std::string &type);

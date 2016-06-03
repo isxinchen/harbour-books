@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sopconfig syberos:versionCode="1" syberos:shareUserId="" xmlns:syberos="http://schemas.syberos.com/sop/res/syberos/v1" syberos:sopid="com.syberos.fbreader" syberos:versionName="1.0.0">
+<sopconfig syberos:versionCode="3" xmlns:syberos="http://schemas.syberos.com/sop/res/syberos/v1" syberos:sopid="com.syberos.fbreader" syberos:shareUserId="" syberos:versionName="1.0.2">
     <uses-permission syberos:name="syberos.permission.ACCESS_DATA_NETWORK"/>
     <uses-permission syberos:name="syberos.permission.ACCESS_STORAGE"/>
     <uses-permission syberos:name="syberos.permission.ACCESS_WIFI"/>
     <uses-sdk syberos:minSdkVersion="" syberos:targetSdkVersion=""/>
-    <application syberos:description="Brief introduction of your application here. " syberos:name="FBReader" syberos:icon="icons/harbour-books.png" syberos:debuggable="true">
-        <uiapp syberos:id="fbreader" syberos:exec="bin/fbreader" syberos:launcher="true" syberos:name="" syberos:splash="" syberos:icon="" syberos:background="">
+    <application syberos:debuggable="true" syberos:name="元心阅读" syberos:description="Brief introduction of your application here. " syberos:icon="icons/logo.png">
+        <uiapp syberos:name="" syberos:icon="" syberos:launcher="true" syberos:id="fbreader" syberos:splash="" syberos:exec="bin/fbreader" syberos:background="">
             <url syberos:id="">
                 <scheme>fbreader</scheme>
             </url>

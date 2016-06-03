@@ -18,6 +18,7 @@
 #include "BooksCoverWidget.h"
 #include "BooksTaskQueue.h"
 #include "BooksHints.h"
+#include "booksshelfmodel.h"
 
 #include "HarbourDebug.h"
 #include "HarbourLib.h"
@@ -51,6 +52,7 @@ FBReader_Workspace::FBReader_Workspace(int argc, char **argv)
     BOOKS_QML_REGISTER(BooksCoverWidget, "BookCover");
     BOOKS_QML_REGISTER(BooksSettings, "BooksSettings");
     BOOKS_QML_REGISTER(BooksHints, "BooksHints");
+    BOOKS_QML_REGISTER(BooksShelfModel, "BooksShelfModel");
     HarbourLib::registerTypes(BOOKS_QML_PLUGIN,
         BOOKS_QML_PLUGIN_V1, BOOKS_QML_PLUGIN_V2);
 

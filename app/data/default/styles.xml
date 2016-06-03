@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DefaultStyles>
 	<style id="0" name="Regular Paragraph" firstLineIndentDelta="1em" allowHyphenations="true"/>
-	<style id="1" name="Title" fontSizeDelta="10" bold="true" spaceBefore="2" spaceAfter="7" alignment="center" allowHyphenations="false"/>
+        <style id="1" name="Title" fontSizeDelta="10" bold="true" spaceBefore="2" spaceAfter="7" alignment="center" allowHyphenations="false"/>
 	<style id="3" name="Poem Title" fontSizeDelta="2" bold="true" spaceBefore="6" spaceAfter="6" leftIndent="40" allowHyphenations="false"/>
-	<style id="2" name="Section Title" fontSizeDelta="6" bold="true" spaceAfter="5" alignment="center" allowHyphenations="false"/>
+        <style id="2" name="Section Title" fontSizeDelta="6" bold="true" spaceAfter="5" alignment="center" allowHyphenations="false"/>
 	<style id="5" name="Annotation" fontSizeDelta="-2" firstLineIndentDelta="20" allowHyphenations="true"/>
 	<style id="6" name="Epigraph" fontSizeDelta="-2" italic="true" leftIndent="80" allowHyphenations="true"/>
 	<style id="4" name="Subtitle" bold="true" allowHyphenations="true"/>
@@ -11,7 +11,7 @@
 	<style id="14" name="Date" leftIndent="40" allowHyphenations="false"/>
 	<style id="7" name="Stanza" spaceBefore="6" spaceAfter="6" alignment="linestart" allowHyphenations="false"/>
 	<style id="8" name="Verse" leftIndent="20" alignment="linestart" allowHyphenations="false"/>
-	<style id="10" name="Image" spaceBefore="8" spaceAfter="8" alignment="center"/>
+        <style id="10" name="Image" spaceBefore="8" spaceAfter="8" alignment="center"/>
 	<style id="23" name="Contents Table" spaceAfter="7" leftIndent="20" firstLineIndentDelta="-20" alignment="linestart"/>
 	<style id="25" name="Library Entry" alignment="linestart" allowHyphenations="false"/>
 	<style id="9" name="Preformatted text" firstLineIndentDelta="0" alignment="linestart" allowHyphenations="false" family="monospace"/>

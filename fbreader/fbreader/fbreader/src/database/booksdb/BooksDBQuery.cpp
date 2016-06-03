@@ -123,10 +123,10 @@ const std::string BooksDBQuery::SECOND_INIT_DATABASE = \
 	"	DELETE FROM BookAuthor WHERE book_id = OLD.book_id; " \
 	"	DELETE FROM BookSeries WHERE book_id = OLD.book_id; " \
 	"	DELETE FROM BookTag WHERE book_id = OLD.book_id; " \
-	"	DELETE FROM StackPosition WHERE book_id = OLD.book_id; " \
-	"	DELETE FROM BookStateStack WHERE book_id = OLD.book_id; " \
-	"	DELETE FROM RecentBooks WHERE book_id = OLD.book_id; " \
-	"	DELETE FROM BookList WHERE book_id = OLD.book_id; " \
+//    "	DELETE FROM StackPosition WHERE book_id = OLD.book_id; "
+//    "	DELETE FROM BookStateStack WHERE book_id = OLD.book_id; "
+//    "	DELETE FROM RecentBooks WHERE book_id = OLD.book_id; "
+//	"	DELETE FROM BookList WHERE book_id = OLD.book_id; "
 	"END; " \
 	" " \
 	"CREATE TRIGGER IF NOT EXISTS Files_Delete BEFORE DELETE  " \
@@ -134,7 +134,7 @@ const std::string BooksDBQuery::SECOND_INIT_DATABASE = \
 	"BEGIN " \
 	"	DELETE FROM Books WHERE file_id = OLD.file_id; " \
 	"	DELETE FROM PalmType WHERE file_id = OLD.file_id; " \
-	"	DELETE FROM NetFiles WHERE file_id = OLD.file_id; " \
+//	"	DELETE FROM NetFiles WHERE file_id = OLD.file_id; "
 	"END; " \
 	" " \
 	" " \
@@ -333,4 +333,16 @@ const std::string BooksDBQuery::SET_BOOK_STATE = "INSERT OR REPLACE INTO BookSta
 const std::string BooksDBQuery::INSERT_BOOK_LIST = "INSERT OR IGNORE INTO BookList(book_id) VALUES (@book_id); ";
 const std::string BooksDBQuery::DELETE_BOOK_LIST = "DELETE FROM BookList WHERE book_id = @book_id; ";
 const std::string BooksDBQuery::CHECK_BOOK_LIST = "SELECT COUNT(*) FROM BookList WHERE book_id = @book_id; ";
+
+
+//add by xinchen
+
+const std::string BooksDBQuery::DELETE_STACK_POSITION = "DELETE FROM State.StackPosition WHERE book_id = @book_id; ";
+const std::string BooksDBQuery::DELETE_BOOK_STATE_STACK = "DELETE FROM State.BookStateStack WHERE book_id = @book_id; ";
+const std::string BooksDBQuery::DELETE_RECENT_BOOKS = "DELETE FROM RecentBooks WHERE book_id = @book_id; ";
+//const std::string BooksDBQuery::DELETE_BOOK_LIST = "DELETE FROM BookList WHERE book_id = @book_id; ";
+const std::string BooksDBQuery::DELETE_NET_FILES = "DELETE FROM NetFiles WHERE file_id = @file_id; ";
+
+
+
 

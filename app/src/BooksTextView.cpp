@@ -38,8 +38,8 @@
 
 #define SUPER ZLTextView
 
-const ZLColor BooksTextView::DEFAULT_BACKGROUND(255, 255, 255);
-const ZLColor BooksTextView::INVERTED_BACKGROUND(0, 0, 0);
+const ZLColor BooksTextView::DEFAULT_BACKGROUND(238, 238, 238);
+const ZLColor BooksTextView::INVERTED_BACKGROUND(65, 67, 95);
 
 BooksTextView::BooksTextView(
     BooksPaintContext& aContext,
@@ -48,7 +48,8 @@ BooksTextView::BooksTextView(
     SUPER(aContext),
     iMargins(aMargins),
     iPaintContext(aContext),
-    iTextStyle(aTextStyle)
+    iTextStyle(aTextStyle),
+    isInvertColors(false)
 {
 }
 
@@ -82,9 +83,37 @@ int BooksTextView::bottomMargin() const
     return iMargins.iBottom;
 }
 
+bool BooksTextView::stylusPress(int x, int y)
+{
+    onStylusPress(x, y);
+}
+bool BooksTextView::stylusRelease(int x, int y)
+{
+    onStylusRelease(x, y);
+}
+bool BooksTextView::stylusMove(int x, int y)
+{
+    onStylusMove(x, y);
+}
+bool BooksTextView::stylusMovePressed(int x, int y)
+{
+    onStylusPress(x, y);
+}
+bool BooksTextView::fingerTap(int x, int y)
+{
+    onFingerTap(x, y);
+}
+
 ZLColor BooksTextView::backgroundColor() const
 {
-    return iPaintContext.realColor(DEFAULT_BACKGROUND);
+    if(isInvertColors){
+        QColor color = qtColor(INVERTED_BACKGROUND);
+        return ZLColor(color.red(), color.green(), color.blue());
+    }else{
+        QColor color = qtColor(DEFAULT_BACKGROUND);
+        return ZLColor(color.red(), color.green(), color.blue());
+    }
+//    return iPaintContext.realColor(INVERTED_BACKGROUND);
 }
 
 ZLColor BooksTextView::color(const std::string &aStyle) const
@@ -120,7 +149,14 @@ ZLColor BooksTextView::color(const std::string &aStyle) const
     } else if (aStyle == ZLTextStyle::HIGHLIGHTED_TEXT) {
         return iPaintContext.realColor(60, 139, 255);
     }
-    return iPaintContext.realColor(0, 0, 0);
+
+    if(isInvertColors){
+        return ZLColor(117, 130, 154);
+    }else{
+        return ZLColor(68, 68, 68);
+    }
+
+    return iPaintContext.realColor(68, 68, 68);//"#404040"
 }
 
 shared_ptr<ZLTextStyle> BooksTextView::baseStyle() const

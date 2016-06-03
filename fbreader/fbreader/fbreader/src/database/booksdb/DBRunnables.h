@@ -225,12 +225,19 @@ public:
 	DeleteBookRunnable(DBConnection &connection);
 	bool run();
 	void setFileName(const std::string &fileName);
+    void setBook(shared_ptr<Book> book);
 
 private:
 	std::string myFileName;
+    shared_ptr<Book> myBook;
 
 	shared_ptr<FindFileIdRunnable> myFindFileId;
 	shared_ptr<DBCommand> myDeleteFile;
+    shared_ptr<DBCommand> myDeleteStackPosition;
+    shared_ptr<DBCommand> myDeleteBookStateStack;
+    shared_ptr<DBCommand> myDeleteRecentBooks;
+    shared_ptr<DBCommand> myDeleteBookList;
+    shared_ptr<DBCommand> myDeleteNetFiles;
 };
 
 

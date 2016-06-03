@@ -53,9 +53,9 @@
 #define DEFAULT_CURRENT_FOLDER  QString()
 #define DEFAULT_INVERT_COLORS   false
 
-#define PAGETOOL_COLOR                      QColor(128,128,128) // any bg
-#define NORMAL_PAGETOOL_HIGHLIGHT_COLOR     QColor(64,64,64)    // on white
-#define INVERTED_PAGETOOL_HIGHLIGHT_COLOR   QColor(192,192,192) // on black
+#define PAGETOOL_COLOR                      QColor(0, 0, 0) // any bg
+#define NORMAL_PAGETOOL_HIGHLIGHT_COLOR     QColor(0, 0, 0)    // on white
+#define INVERTED_PAGETOOL_HIGHLIGHT_COLOR   QColor(0, 0, 0) // on black
 
 // ==========================================================================
 // BooksSettings::TextStyle

@@ -300,6 +300,28 @@ BooksBook::BooksBook(QObject* aParent) :
     init();
 }
 
+BooksBook::BooksBook(shared_ptr<Book> aBook):
+    QObject(NULL),
+    iRef(1),
+    iBook(aBook),
+    iTaskQueue(BooksTaskQueue::defaultQueue())
+{
+    init();
+    HASSERT(!iBook.isNull());
+    iTitle = QString::fromStdString(iBook->title());
+    iPath = QString::fromStdString(iBook->file().physicalFilePath());
+    iFileName = QFileInfo(iPath).fileName();
+    iFormatPlugin = PluginCollection::Instance().plugin(*iBook);
+    AuthorList authors(iBook->authors());
+    const int n = authors.size();
+    for (int i=0; i<n; i++) {
+        if (i > 0) iAuthors += ", ";
+        iAuthors += QString::fromStdString(authors[i]->name());
+    }
+    // Refcounted BooksBook objects are managed by C++ code
+    QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
+}
+
 BooksBook::BooksBook(const BooksStorage& aStorage, QString aRelativePath,
     shared_ptr<Book> aBook) :
     QObject(NULL),

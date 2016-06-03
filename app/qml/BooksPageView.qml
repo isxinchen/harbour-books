@@ -54,8 +54,6 @@ Item {
     PageWidget {
         id: widget
         anchors.fill: parent
-        topMargin: 20
-        bottomMargin: 20
         settings: globalSettings
         model: bookModel
     }
@@ -66,14 +64,15 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
-            topMargin: 10
+            topMargin: 40
             leftMargin: Math.max(view.leftMargin, leftSpaceReserved)
             rightMargin: Math.max(view.rightMargin, rightSpaceReserved)
         }
         centerX: Math.floor(view.width/2) - anchors.leftMargin
-        height: Theme.itemSizeExtraSmall
-        color: globalSettings.primaryPageToolColor
-        opacity: titleVisible ? 1 : 0
+        height: 20//Theme.itemSizeExtraSmall
+//        color: globalSettings.primaryPageToolColor
+        color: "#bfbfbf"
+        opacity: 1//titleVisible ? 1 : 0
     }
 
     CIndicator {
@@ -87,20 +86,92 @@ Item {
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
-            bottomMargin: 10
+            bottomMargin: 40
         }
         text: widget.page + 1
         height: Theme.itemSizeExtraSmall
         font.pixelSize: Theme.fontSizeSmall
         verticalAlignment: Text.AlignVCenter
-        color: globalSettings.primaryPageToolColor
+//        color: globalSettings.primaryPageToolColor
+        color: "#bfbfbf"
         opacity: pageNumberVisible ? 1 : 0
         visible: opacity > 0
         Behavior on opacity { FadeAnimation {} }
     }
 
-    MouseArea {
+    PinchArea {
         anchors.fill: parent
-        onClicked: view.pageClicked()
+
+        property point initPoint1: Qt.point(0, 0)
+        property point initPoint2: Qt.point(0, 0)
+
+        property point endPoint1: Qt.point(0, 0)
+        property point endPoint2: Qt.point(0, 0)
+
+        onPinchStarted: {
+            console.log("started pinch" + pinch.pointCount + pinch.point1 + pinch.point2)
+            initPoint1 = pinch.point1
+            initPoint2 = pinch.point2
+        }
+
+        onPinchUpdated: {
+            console.log("updated pinch" + pinch.pointCount + pinch.point1 + pinch.point2)
+            if(pinch.pointCount == 2 && pinch.point1 != pinch.point2){
+                endPoint1 = pinch.point1
+                endPoint2 = pinch.point2
+            }
+        }
+
+        onPinchFinished: {
+            console.log("finished pinch" + pinch.pointCount + pinch.point1 + pinch.point2)
+
+            var xdiff = initPoint2.x - initPoint1.x
+            var ydiff = initPoint2.y - initPoint1.y
+            var initDistance = Math.pow((xdiff * xdiff + ydiff * ydiff), 0.5);
+
+            xdiff = endPoint2.x - endPoint1.x
+            ydiff = endPoint2.y - endPoint1.y
+
+            var distance = Math.pow((xdiff * xdiff + ydiff * ydiff), 0.5);
+
+            console.log("initDistance=" , initDistance)
+            console.log("distance=" , distance)
+
+            if(initDistance > distance){
+                bookModel.decreaseFontSize()
+            }else{
+                bookModel.increaseFontSize()
+            }
+        }
     }
+
+//    MouseArea {
+//        anchors.fill: parent
+//        onClicked: view.pageClicked()
+//        onPressed: {
+//            widget.onStylusPress(mouseX, mouseY);
+//        }
+
+//        onReleased: {
+//            widget.onStylusRelease(mouseX, mouseY);
+//        }
+
+//        onClicked: {
+//            widget.onFingerTap(mouseX, mouseY);
+//        }
+
+
+
+
+//        bool BooksPageWidget::onStylusMove(int x, int y)
+//        {
+//            iData->iView->onStylusMove(x, y);
+//        }
+
+//        bool BooksPageWidget::onStylusMovePressed(int x, int y)
+//        {
+//            iData->iView->onStylusMovePressed(x, y);
+//        }
+
+//    }
 }

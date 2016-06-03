@@ -1,7 +1,7 @@
 var paddingSmall = 10
 var paddingMedium = 20
 var paddingLarge = 30
-var horizontalPageMargin = 10
+var horizontalPageMargin = 40
 var itemSizeSmall = 10
 var itemSizeMedium = 20
 var itemSizeLarge = 30
@@ -20,9 +20,9 @@ var primaryColor = Qt.rgba(0.5, 0.5, 0, 1)
 var secondaryColor = Qt.rgba(0.5, 0.5, 0.5, 1)
 
 var fontSizeTiny = 20
-var fontSizeSmall = 20
-var fontSizeMedium = 25
-var fontSizeLarge = 28
+var fontSizeSmall = 25
+var fontSizeMedium = 28
+var fontSizeLarge = 30
 
 var fontSizeExtraSmall = 20
 

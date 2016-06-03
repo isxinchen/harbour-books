@@ -36,7 +36,7 @@ import "Theme.js" as Theme
 Text {
     color: Theme.primaryColor
     font.family: Theme.fontFamily
-    font.pixelSize: Theme.fontSizeSmall
+    font.pixelSize: Theme.fontSizeLarge
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
     wrapMode: Text.Wrap

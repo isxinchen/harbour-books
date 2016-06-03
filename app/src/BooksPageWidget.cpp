@@ -169,7 +169,7 @@ BooksPageWidget::BooksPageWidget(QQuickItem* aParent) :
     iPage(-1)
 {
     setFlag(ItemHasContents, true);
-    setFillColor(qtColor(BooksTextView::DEFAULT_BACKGROUND));
+//    setFillColor(qtColor(BooksTextView::DEFAULT_BACKGROUND));
     iResizeTimer->setSingleShot(true);
     iResizeTimer->setInterval(0);
     connect(iResizeTimer, SIGNAL(timeout()), SLOT(onResizeTimeout()));
@@ -234,9 +234,9 @@ void BooksPageWidget::setSettings(BooksSettings* aSettings)
         }
         const bool colorsAreInverted = invertColors();
         if (colorsWereInverted != colorsAreInverted) {
-            setFillColor(qtColor(colorsAreInverted ?
-                BooksTextView::INVERTED_BACKGROUND :
-                BooksTextView::DEFAULT_BACKGROUND));
+//            setFillColor(qtColor(colorsAreInverted ?
+//                BooksTextView::INVERTED_BACKGROUND :
+//                BooksTextView::DEFAULT_BACKGROUND));
         }
         if (!BooksTextStyle::equalLayout(oldTextStyle, iTextStyle)) {
             resetView();
@@ -366,6 +366,31 @@ void BooksPageWidget::setBottomMargin(int aMargin)
         resetView();
         Q_EMIT bottomMarginChanged();
     }
+}
+
+bool BooksPageWidget::onStylusPress(int x, int y)
+{
+    iData->iView->stylusPress(x, y);
+}
+
+bool BooksPageWidget::onStylusRelease(int x, int y)
+{
+    iData->iView->stylusRelease(x, y);
+}
+
+bool BooksPageWidget::onStylusMove(int x, int y)
+{
+    iData->iView->stylusMove(x, y);
+}
+
+bool BooksPageWidget::onStylusMovePressed(int x, int y)
+{
+    iData->iView->stylusMovePressed(x, y);
+}
+
+bool BooksPageWidget::onFingerTap(int x, int y)
+{
+    iData->iView->fingerTap(x, y);
 }
 
 void BooksPageWidget::paint(QPainter* aPainter)

@@ -69,6 +69,7 @@ public:
     explicit BooksBook(QObject* aParent = NULL);
     BooksBook(const BooksStorage& aStorage, QString aRelativePath,
         shared_ptr<Book> aBook);
+    BooksBook(shared_ptr<Book> aBook);
     ~BooksBook();
 
     static BooksBook* newBook(const BooksStorage& aStorage, QString aRelPath,

@@ -89,6 +89,12 @@ public:
 
     BooksMargins margins() const { return iMargins; }
 
+    Q_INVOKABLE bool onStylusPress(int x, int y);
+    Q_INVOKABLE bool onStylusRelease(int x, int y);
+    Q_INVOKABLE bool onStylusMove(int x, int y);
+    Q_INVOKABLE bool onStylusMovePressed(int x, int y);
+    Q_INVOKABLE bool onFingerTap(int x, int y);
+
 Q_SIGNALS:
     void loadingChanged();
     void pageChanged();

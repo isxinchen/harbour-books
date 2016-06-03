@@ -57,9 +57,9 @@ class BooksSettings : public QObject
 
 public:
     enum FontSize {
-        MinFontSize = -5,
+        MinFontSize = -4,
         DefaultFontSize = 0,
-        MaxFontSize = 10,
+        MaxFontSize = 4,
         FontSizeSteps = MaxFontSize - MinFontSize
     };
 

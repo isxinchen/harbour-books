@@ -384,11 +384,12 @@ bool BooksDB::saveBookStateStack(const Book &book, const std::deque<ReadingState
 }
 
 
-bool BooksDB::removeBook(const Book &book) {
-	if (!isInitialized() || book.bookId() == 0) {
+bool BooksDB::removeBook(const shared_ptr<Book> book) {
+    if (!isInitialized() || (*book).bookId() == 0) {
 		return false;
 	}
-	myDeleteBook->setFileName(book.file().path());
+    myDeleteBook->setBook(book);
+    myDeleteBook->setFileName((*book).file().path());
 	return executeAsTransaction(*myDeleteBook);
 }
 

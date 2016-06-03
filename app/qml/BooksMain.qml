@@ -45,12 +45,13 @@ CPageStackWindow {
 
     BooksSettings {
         id: globalSettings
-        fontSize: -5
+        fontSize: -1
     }
     BooksHints { id: globalHints }
     SystemState { id: globalSystemState }
 
-    initialPage: BooksMainPage { id: mainPage }
+//    initialPage: BooksMainPage { id: mainPage }
+    initialPage: BooksShelfPage { id: mainPage }
 
 //    cover: Component {
 //        BooksCoverPage {

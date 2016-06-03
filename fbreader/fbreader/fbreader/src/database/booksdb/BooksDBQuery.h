@@ -90,7 +90,14 @@ public:
 
 	static const std::string INSERT_BOOK_LIST;
 	static const std::string DELETE_BOOK_LIST;
-	static const std::string CHECK_BOOK_LIST;
+    static const std::string CHECK_BOOK_LIST;
+
+//add by xinchen
+    static const std::string DELETE_STACK_POSITION;
+    static const std::string DELETE_BOOK_STATE_STACK;
+    static const std::string DELETE_RECENT_BOOKS;
+    //static const std::string DELETE_BOOK_LIST;
+    static const std::string DELETE_NET_FILES;
 
 private: // disable creation Instances
 	BooksDBQuery();

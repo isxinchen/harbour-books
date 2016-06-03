@@ -74,6 +74,12 @@ public:
     virtual int topMargin() const;
     virtual int bottomMargin() const;
 
+    bool stylusPress(int x, int y);
+    bool stylusRelease(int x, int y);
+    bool stylusMove(int x, int y);
+    bool stylusMovePressed(int x, int y);
+    bool fingerTap(int x, int y);
+
     // ZLTextArea::Properties
     virtual shared_ptr<ZLTextStyle> baseStyle() const;
     virtual ZLColor color(const std::string &style = std::string()) const;
@@ -84,11 +90,12 @@ private:
     BooksPaintContext& iPaintContext;
     std::string iCaption;
     shared_ptr<ZLTextStyle> iTextStyle;
+    bool isInvertColors;
 };
 
 inline BooksPos BooksTextView::position() const
     { return BooksPos(textArea().startCursor()); }
 inline void BooksTextView::setInvertColors(bool aInvertColors)
-    { iPaintContext.setInvertColors(aInvertColors); }
+    { iPaintContext.setInvertColors(aInvertColors); isInvertColors = aInvertColors;}
 
 #endif // BOOKS_TEXT_VIEW_H

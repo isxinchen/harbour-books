@@ -78,5 +78,6 @@ Item {
         verticalAlignment: Text.AlignVCenter
 //        truncationMode: TruncationMode.Fade
         maximumLineCount: 1
+        elide: Text.ElideRight
     }
 }

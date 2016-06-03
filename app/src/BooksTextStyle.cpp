@@ -42,7 +42,7 @@ public:
 };
 
 weak_ptr<ZLTextStyle> BooksTextStyle::Default::instance;
-const std::string BooksTextStyle::Default::FONT_FAMILY("Times");
+const std::string BooksTextStyle::Default::FONT_FAMILY("微软雅黑");
 
 shared_ptr<ZLTextStyle> BooksTextStyle::defaults()
 {
@@ -86,7 +86,7 @@ const std::vector<std::string>& BooksTextStyle::fontFamilies() const
 
 int BooksTextStyle::fontSize() const
 {
-    return (26 * BOOKS_PPI / 330) & (~1); // Make sure it's divisible by 2
+    return (21 * BOOKS_PPI / 330) & (~1); // Make sure it's divisible by 2
 }
 
 bool BooksTextStyle::bold() const
@@ -121,7 +121,7 @@ short BooksTextStyle::lineEndIndent(const ZLTextStyleEntry::Metrics&, bool) cons
 
 short BooksTextStyle::firstLineIndentDelta(const ZLTextStyleEntry::Metrics&) const
 {
-    return 0;
+    return 60;
 }
 
 int BooksTextStyle::verticalShift() const
@@ -136,7 +136,7 @@ ZLTextAlignmentType BooksTextStyle::alignment() const
 
 double BooksTextStyle::lineSpace() const
 {
-    return 3;
+    return 2.5;
 }
 
 bool BooksTextStyle::allowHyphenations() const
